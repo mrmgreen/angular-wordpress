@@ -27,6 +27,8 @@ angular.module('myApp.view2', ['ngRoute'])
     var self = this;
     posts.posts().then(function(response) {
       self.posts = response.data;
+    }, function(data) {
+      console.log(error);
     })
 
 
