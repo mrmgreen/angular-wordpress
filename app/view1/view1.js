@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'ngSanitize',])
+angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
@@ -10,13 +10,13 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize',])
   });
 }])
 
-.factory('view1Fact', ['$http', function($http) {
+.factory('view1Fact', ['$http', 'myConfig', function($http, myConfig) {
 
   return {
     newMessage: 'noooo',
 
     pages: function() {
-      return $http.get('http://localhost:8888/angular/angular-wordpress/1/wordpress/wp-json/wp/v2/pages');
+      return $http.get(myConfig.wordpressPages);
     }
 
   }
