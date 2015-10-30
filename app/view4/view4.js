@@ -15,7 +15,7 @@ angular.module('myApp.view4', ['ngRoute'])
 
     return {
       tflJourneyBalhamtoBank : function() {
-        return $http.get('https://api.tfl.gov.uk/journey/journeyresults/51.443183,-0.152671/to/51.513347,-0.088986')
+        return $http.get('https://api.tfl.gov.uk/journey/journeyresults/51.4426,-0.1520/to/51.513347,-0.088986')
       }
     }
 

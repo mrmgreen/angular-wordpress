@@ -1,3 +1,26 @@
-<p>View 4</p>
+<p>View 4 - Journey planner</p>
 <p>{{ view4.message }}</p>
-<p>{{ view4.tflJourney }} </p>
+<!--<p>Start Time: {{ view4.tflJourney.journeys[0].startDateTime }} </p>-->
+<!--<p>Duration: {{ view4.tflJourney.journeys[0].duration }} </p>-->
+<!--<p>Arrival Time: {{ view4.tflJourney.journeys[0].arrivalDateTime }} </p>-->
+
+<!--<p>{{ view4.tflJourney.journeys[1] }}</p>-->
+<ul>
+<li data-ng-repeat="x in view4.tflJourney.journeys">
+    <p>Start time: {{ x.startDateTime }}</p>
+<p>Summary: {{ x.legs[0].instruction.summary }}</p>
+<p>Duration: {{ x.legs[0].duration }} mins</p>
+
+
+<p>Summary: {{ x.legs[1].instruction.summary }}</p>
+<p>Duration: {{ x.legs[1].duration }} mins</p>
+<li/></ul>
+
+
+
+<!--<h2>Summary: {{ view4.tflJourney.journeys[0].legs[0].instruction.summary }}</h2>-->
+<!--<p>Duration: {{ view4.tflJourney.journeys[0].legs[0].duration }}</p>-->
+
+
+<!--<h2>Summary: {{ view4.tflJourney.journeys[0].legs[1].instruction.summary }}</h2>-->
+<!--<p>Duration: {{ view4.tflJourney.journeys[0].legs[1].duration }}</p>-->
