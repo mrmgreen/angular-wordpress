@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.view2', ['ngRoute', 'myApp.config'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
@@ -10,13 +10,13 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.factory('posts', ['$http', function($http) {
+.factory('posts', ['$http', 'myConfig', function($http, myConfig ) {
 
   return {
     message: 'eat me today!',
 
     posts: function() {
-      return $http.get('http://localhost:8888/angular/angular-wordpress/1/wordpress/wp-json/wp/v2/posts');
+      return $http.get(myConfig.wordpressPosts);
     }
 
   }
@@ -27,6 +27,8 @@ angular.module('myApp.view2', ['ngRoute'])
     var self = this;
     posts.posts().then(function(response) {
       self.posts = response.data;
+    }, function(data) {
+      console.log(data);
     })
 
 

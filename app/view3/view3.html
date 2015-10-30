@@ -1,0 +1,11 @@
+<p>Tube statuses</p>
+<p>{{ view3Tfl.message }}</p>
+<p>{{ view3Tfl.viewMsg }}</p>
+<p>{{ view3Tfl.tfl[0].name }}</p>
+
+<p></p>
+<ul><li data-ng-repeat="x in view3Tfl.tfl">
+    <p>{{ x.name }}</p>
+    <p>{{ x.lineStatuses[0].statusSeverityDescription }}</p>
+<p data-ng-if="x.lineStatuses[0].statusSeverityDescription == 'Part Closure'">{{ x.lineStatuses[0].reason }}</p>
+</li></ul>
