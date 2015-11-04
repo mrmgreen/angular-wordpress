@@ -1,4 +1,7 @@
 /* app css stylesheet */
+body { padding-top: 70px; background-color: #000; color: #fff; }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .menu {
   list-style: none;
