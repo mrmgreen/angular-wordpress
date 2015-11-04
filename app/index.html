@@ -35,6 +35,7 @@
           <li role="presentation"><a href="#/view2">Posts</a></li>
           <li role="presentation"><a href="#/view3">Tube statuses</a></li>
           <li role="presentation"><a href="#/view4">Tube ride</a></li>
+          <li role="presentation"><a href="#/view5">Journey Planner</a></li>
         </ul> 
     </div>
   </div>
@@ -46,7 +47,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+  <div ng-view id="views"></div>
 
   <div>Angular seed app: v<span app-version></span></div>
 
@@ -62,6 +63,7 @@
   <script src="view2/view2.js"></script>
   <script src="view3/view3.js"></script>
   <script src="view4/view4.js"></script>
+  <script src="view5/view5.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
