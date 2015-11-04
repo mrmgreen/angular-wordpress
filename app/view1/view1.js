@@ -22,6 +22,20 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
+.factory('terminalText', function() {
+  
+document.querySelector('.terminal').innerHTML = '<span class="blink">hello</span>' + document.querySelector('.terminal').innerHTML;
+
+var blinkText = document.querySelector('.blink');
+
+var blink = setInterval(function() {if (blinkText.style.opacity == 0 || blinkText.style.opacity == '') { blinkText.style.opacity = 1 } else {blinkText.style.opacity = 0 }}, 1000);
+
+  return {
+    terminal: 'tet'
+
+  }
+})
+
 .controller('View1Ctrl', ['view1Fact', function(view1Fact) {
     var self = this;
     this.message = "Take the blue pill";
