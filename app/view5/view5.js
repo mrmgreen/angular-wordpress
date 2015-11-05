@@ -29,9 +29,18 @@ angular.module('myApp.view5', ['ngRoute'])
         console.log('error with journey', reponse.data);
       });
     };
+    this.customer = {
+      name: 'Derek'
+    }
 
 
   }])
+
+.directive('myCustomer', function() {
+  return {
+    template: 'Name {{  view5.customer.name }}'
+  };
+})
 
 .factory('journeyPlannerFact', ['$http', function($http) {
     this.journey = this.journey || 'hello boss man';
@@ -48,6 +57,6 @@ angular.module('myApp.view5', ['ngRoute'])
         return $http.get('https://api.tfl.gov.uk/journey/journeyresults/' + this.journey.from + '/to/' + this.journey.to);
       }
     }
-  }]);
+}]);
 
 
