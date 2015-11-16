@@ -13,21 +13,21 @@ module.exports = function(config){
 
     autoWatch : true,
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'jasmine-matchers'],
+
+    reporters: ['mocha'],
+
+    colors: true,
 
     browsers : ['Chrome'],
 
     plugins : [
             'karma-chrome-launcher',
-            'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-jasmine-matchers',
+            'karma-mocha-reporter'
             ],
 
-    junitReporter : {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
 
   });
 };
