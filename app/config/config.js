@@ -1,7 +1,7 @@
 angular.module('myApp.config', [])
 .constant('myConfig', {
-	//'wordpressPages': '/wordpress-angular/wordpress/wp-json/wp/v2/pages',
+	//'wordpressPages': '/wordpress-angular/wordpress/wp-json/wp/v2/pages', // ---home---
 	//'wordpressPosts': '/wordpress-angular/wordpress/wp-json/wp/v2/posts'
-	 'wordpressPages': 'http://localhost:8888/angular/angular-wordpress/1/wordpress/wp-json/wp/v2/pages',
+	 'wordpressPages': 'http://localhost:8888/angular/angular-wordpress/1/wordpress/wp-json/wp/v2/pages', //--work--
 	 'wordpressPosts': 'http://localhost:8888/angular/angular-wordpress/1/wordpress/wp-json/wp/v2/posts'
 });
