@@ -22,86 +22,79 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
-.factory('terminalText', function() {
+.factory('terminalText', ['$q', function($q) {
  
-  function setBlinky() { 
+  var delay = 2000;
+  var iterator;
 
-    var blinkLetters = document.querySelector('.terminal').innerHTML;
+  function setBlinky(text) { 
 
-    document.querySelector('.terminal').innerHTML = '<span class="terminalText1"></span><span class="blink">&#x7c;</span>';
+    var blinkLetters = document.querySelector(text).innerHTML;
+
+    console.log(blinkLetters);
+
+    document.querySelector(text).innerHTML = '<span class="terminalText1"></span><span class="blink">&#x7c;</span>';
 
     var blinkText = document.querySelector('.blink');
 
     var blink = setInterval( function() { if (blinkText.style.opacity == 0 || blinkText.style.opacity == '' ) { blinkText.style.opacity = 1 } else {blinkText.style.opacity = 0 }}, 600);
 
     /**
-     * Animates through the string.
+     * Animates through the string. Sets the setTimeout function.
      */
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,1);
-    }, 3000);
 
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,2);
-    }, 3500);
+     function animateBlink() {
+      for (var i = 1; i <= blinkLetters.length+1; i++) {
+        if( i == blinkLetters.length + 1 ) {
+          delay = delay + 1000;
+          setCallBackTimeOut(delay); 
+        } else {
+        delay = delay + 500;
+        setTheTimeout(i,delay);
+        }
+      }
+     }
 
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,3);
-    }, 4000);
+    /**
+     * Sets callback to animeBlink function
+     */
+     function setCallBackTimeOut(delay) {
+      var defer;
+      setTimeout(function() {
+        document.querySelector('.terminalText1').style.color = 'pink';
+        document.querySelector('.terminalText1').style.position = 'absolute';
+        document.querySelector('.terminalText1').style.top = '50%';
+        document.querySelector('.terminalText1').style.left = '50%';
+        document.querySelector('.terminalText1').style.fontSize = '40px';
+      }, delay);
+     }
 
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,4);
-    }, 4500);
+    /**
+     * Iterators the setTimeout for animation.
+     */
+     function setTheTimeout(iterator, delay) {
+        setTimeout(function() {
+          document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,iterator);
+        }, delay);
+     }
 
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,5);
-    }, 5000);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,6);
-    }, 6500);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,7);
-    }, 7000);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,8);
-    }, 8000);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,9);
-    }, 8500);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,10);
-    }, 9000);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,11);
-    }, 9500);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,12);
-    }, 10000);
-
-    setTimeout(function(){ 
-      document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,13);
-    }, 10500);
+     animateBlink();
 
   }
 
   return {
-    terminal: setBlinky
+    terminal: function(text) {
+      setBlinky(text)
+    }
 
   }
-})
+}])
 
 .controller('View1Ctrl', ['view1Fact', 'terminalText', function(view1Fact, terminalText) {
     var self = this;
     this.message = "Take the blue pill";
     this.newMessage = view1Fact.newMessage;
-    this.terminalText = terminalText.terminal();
+    this.terminalText = terminalText.terminal('.terminal');
     view1Fact.pages().then(function(response) {
       self.homepage = response.data;
     });
