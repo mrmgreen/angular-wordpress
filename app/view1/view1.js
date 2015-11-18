@@ -26,8 +26,11 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
     var self = this;
     this.message = "Take the blue pill";
     this.newMessage = view1Fact.newMessage;
+
     view1Fact.pages().then(function(response) {
       self.homepage = response.data;
+    }, function(reason) {
+      console.log('view1Fact controller not working ', reason);
     });
 
 }]);
