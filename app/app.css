@@ -1,4 +1,7 @@
 /* app css stylesheet */
+body { padding-top: 70px; background-color: #000; color: #fff; }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .menu {
   list-style: none;
@@ -32,3 +35,8 @@
 #views {
   margin-top:5em;
 }
+
+/* fonts */
+
+h2.terminal { font-family: VT323, Arial, serif; font-weight: 400; color:rgb(0, 204, 0);}
+

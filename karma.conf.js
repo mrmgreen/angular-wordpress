@@ -22,6 +22,7 @@ module.exports = function(config){
     colors: true,
 
     browsers : ['Chrome'],
+    reporters : ['mocha'],
 
     plugins : [
             'karma-chrome-launcher',
@@ -29,7 +30,6 @@ module.exports = function(config){
             'karma-jasmine-matchers',
             'karma-mocha-reporter'
             ],
-
 
   });
 };
