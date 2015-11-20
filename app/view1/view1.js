@@ -22,7 +22,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
-.factory('terminalText', ['$q', function($q) {
+.factory('terminalText', ['$q', '$interval', '$timeout', function($q, $interval, $timeout) {
  
   var delay = 2000;
   var iterator;
@@ -30,14 +30,11 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   function setBlinky(text) { 
 
     var blinkLetters = document.querySelector(text).innerHTML;
-
-    console.log(blinkLetters);
-
     document.querySelector(text).innerHTML = '<span class="terminalText1"></span><span class="blink">&#x7c;</span>';
 
     var blinkText = document.querySelector('.blink');
 
-    var blink = setInterval( function() { if (blinkText.style.opacity == 0 || blinkText.style.opacity == '' ) { blinkText.style.opacity = 1 } else {blinkText.style.opacity = 0 }}, 600);
+    var blink = $interval( function() { if (blinkText.style.opacity == 0 || blinkText.style.opacity == '' ) { blinkText.style.opacity = 1 } else {blinkText.style.opacity = 0 }}, 600);
 
     /**
      * Animates through the string. Sets the setTimeout function.
@@ -60,7 +57,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
      */
      function setCallBackTimeOut(delay) {
       var defer;
-      setTimeout(function() {
+      $timeout(function() {
         document.querySelector('.terminalText1').style.color = 'pink';
         document.querySelector('.terminalText1').style.position = 'absolute';
         document.querySelector('.terminalText1').style.top = '50%';
@@ -73,7 +70,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
      * Iterators the setTimeout for animation.
      */
      function setTheTimeout(iterator, delay) {
-        setTimeout(function() {
+      $timeout(function() {
           document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,iterator);
         }, delay);
      }
