@@ -27,14 +27,18 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   var delay = 2000;
   var iterator;
 
+    /**
+     * Animates the blink text
+     * @param class containing the text to animate.
+     */
   function setBlinky(text) { 
 
     var blinkLetters = document.querySelector(text).innerHTML;
     document.querySelector(text).innerHTML = '<span class="terminalText1"></span><span class="blink">&#x7c;</span>';
 
-    var blinkText = document.querySelector('.blink');
+    var blinkPipe = document.querySelector('.blink');
 
-    var blink = $interval( function() { if (blinkText.style.opacity == 0 || blinkText.style.opacity == '' ) { blinkText.style.opacity = 1 } else {blinkText.style.opacity = 0 }}, 600);
+    var blink = $interval( function() { if (blinkPipe.style.opacity == 0 || blinkPipe.style.opacity == '' ) { blinkPipe.style.opacity = 1 } else {blinkPipe.style.opacity = 0 }}, 600);
 
     /**
      * Animates through the string. Sets the setTimeout function.
@@ -53,16 +57,16 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
      }
 
     /**
-     * Sets callback to animeBlink function
+     * Sets callback to animateBlink function
      */
      function setCallBackTimeOut(delay) {
-      var defer;
       $timeout(function() {
         document.querySelector('.terminalText1').style.color = 'pink';
         document.querySelector('.terminalText1').style.position = 'absolute';
         document.querySelector('.terminalText1').style.top = '50%';
         document.querySelector('.terminalText1').style.left = '50%';
         document.querySelector('.terminalText1').style.fontSize = '40px';
+        blinkPipe.parentNode.removeChild(blinkPipe);
       }, delay);
      }
 
@@ -71,7 +75,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
      */
      function setTheTimeout(iterator, delay) {
       $timeout(function() {
-          document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0,iterator);
+          document.querySelector('.terminalText1').innerHTML = blinkLetters.substr(0, iterator);
         }, delay);
      }
 
