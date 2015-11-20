@@ -22,7 +22,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
-.factory('terminalText', ['$q', '$interval', '$timeout', function($q, $interval, $timeout) {
+.factory('terminalText', ['$q', '$interval', '$timeout', '$rootScope', function($q, $interval, $timeout, $rootScope) {
  
   var delay = 2000;
   var iterator;
@@ -30,6 +30,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
     /**
      * Animates the blink text
      * @param class containing the text to animate.
+     * $scope.$emits terminalTextFinish after function finishes.
      */
   function setBlinky(text) { 
 
@@ -67,6 +68,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
         document.querySelector('.terminalText1').style.left = '50%';
         document.querySelector('.terminalText1').style.fontSize = '40px';
         blinkPipe.parentNode.removeChild(blinkPipe);
+        $rootScope.$broadcast('terminalTextFinish');
       }, delay);
      }
 
@@ -91,7 +93,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
-.controller('View1Ctrl', ['view1Fact', 'terminalText', function(view1Fact, terminalText) {
+.controller('View1Ctrl', ['view1Fact', 'terminalText', '$scope', function(view1Fact, terminalText, $scope) {
     var self = this;
     this.message = "Take the blue pill";
     this.newMessage = view1Fact.newMessage;
@@ -100,6 +102,9 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
       self.homepage = response.data;
     }, function(reason) {
       console.log('view1Fact controller not working ', reason);
+    });
+    $scope.$on('terminalTextFinish', function() {
+      console.log('broadcast has worked');
     });
 
 }]);
