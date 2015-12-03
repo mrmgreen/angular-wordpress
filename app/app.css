@@ -36,6 +36,9 @@ body { padding-top: 70px; background-color: #000; color: #fff; }
   margin-top:5em;
 }
 
+.centerTextAfterAnim { display: block; text-align: center; color: pink; font-size: 40px;}
+.animationText { text-align: center;}
+
 /* fonts */
 
 h2.terminal { font-family: VT323, Arial, serif; font-weight: 400; color:rgb(0, 204, 0);}

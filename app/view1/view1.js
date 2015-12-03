@@ -26,6 +26,10 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
  
   var delay = 2000;
   var iterator;
+  var blinkLetters;
+  var blinkLettersClass;
+  var terminalText1;
+  var animationText;
 
     /**
      * Animates the blink text
@@ -34,8 +38,10 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
      */
   function setBlinky(text) { 
 
-    var blinkLetters = document.querySelector(text).innerHTML;
-    document.querySelector(text).innerHTML = '<span class="terminalText1"></span><span class="blink">&#x7c;</span>';
+    blinkLettersClass = document.querySelector(text);
+    blinkLetters = blinkLettersClass.innerHTML;
+    animationText = document.querySelector('.animationText');
+    blinkLettersClass.innerHTML = '<span class="terminalText1"></span><span class="blink">&#x7c;</span>';
 
     var blinkPipe = document.querySelector('.blink');
 
@@ -62,11 +68,11 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
      */
      function setCallBackTimeOut(delay) {
       $timeout(function() {
-        document.querySelector('.terminalText1').style.color = 'pink';
-        document.querySelector('.terminalText1').style.position = 'absolute';
-        document.querySelector('.terminalText1').style.top = '50%';
-        document.querySelector('.terminalText1').style.left = '50%';
-        document.querySelector('.terminalText1').style.fontSize = '40px';
+        terminalText1 = document.querySelector('.terminalText1');
+        animationText.style.position = 'absolute';
+        animationText.style.top = '50%';
+        animationText.style.left = '50%';
+        terminalText1.className += ' centerTextAfterAnim';
         blinkPipe.parentNode.removeChild(blinkPipe);
         $rootScope.$broadcast('terminalTextFinish');
       }, delay);
@@ -93,7 +99,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
-.controller('View1Ctrl', ['view1Fact', 'terminalText', '$scope', function(view1Fact, terminalText, $scope) {
+.controller('View1Ctrl', ['view1Fact', 'terminalText', '$scope', '$timeout', function(view1Fact, terminalText, $scope, $timeout) {
     var self = this;
     this.message = "Take the blue pill";
     this.newMessage = view1Fact.newMessage;
@@ -105,6 +111,9 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
     });
     $scope.$on('terminalTextFinish', function() {
       console.log('broadcast has worked');
+      $timeout(function () {
+        $scope.setHomeBtn = true;
+      }, 2000);
     });
 
 }]);
