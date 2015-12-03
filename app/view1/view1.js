@@ -115,5 +115,6 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
         $scope.setHomeBtn = true;
       }, 2000);
     });
+    this.peekBtnClick
 
 }]);
