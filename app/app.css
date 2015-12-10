@@ -43,3 +43,17 @@ body { padding-top: 70px; background-color: #000; color: #fff; }
 
 h2.terminal { font-family: VT323, Arial, serif; font-weight: 400; color:rgb(0, 204, 0);}
 
+/* animations */
+
+.repeated-item.ng-enter, .repeated-item.ng-move {
+  -webkit-transition:2s linear all;
+  -moz-transition:2s linear all;
+  -o-transition:2s linear all;
+  transition:2s linear all;
+  opacity:0;
+}
+
+.repeated-item.ng-enter.ng-enter-active,
+.repeated-item.ng-move.ng-move-active {
+  opacity:1;
+}

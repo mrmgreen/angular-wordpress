@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'ngAnimate',
   'myApp.config',
   'myApp.navBar',
   'myApp.view1',
@@ -14,7 +15,7 @@ angular.module('myApp', [
   'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/starwars'});
 }]);
 
 angular.module('myApp.navBar', ['ui.bootstrap']).controller('navbarCtrl', function ($scope) {

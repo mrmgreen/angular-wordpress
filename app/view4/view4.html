@@ -6,7 +6,7 @@
 
 <!--<p>{{ view4.tflJourney.journeys[1] }}</p>-->
 <ul>
-<li data-ng-repeat="x in view4.tflJourney.journeys">
+<li data-ng-repeat="x in view4.tflJourney.journeys" class="repeated-item">
     <p>Start time: {{ x.startDateTime }}</p>
 <p>Summary: {{ x.legs[0].instruction.summary }}</p>
 <p>Duration: {{ x.legs[0].duration }} mins</p>
