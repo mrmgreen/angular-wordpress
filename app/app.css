@@ -43,3 +43,30 @@ body { padding-top: 70px; background-color: #000; color: #fff; }
 
 h2.terminal { font-family: VT323, Arial, serif; font-weight: 400; color:rgb(0, 204, 0);}
 
+/* animations */
+
+/* animating repeat rows  */
+.repeat-row-anim.ng-enter {
+  transition: 2s linear all;
+  opacity: 0;
+}
+
+.repeat-row-anim.ng-enter-stagger {
+  transition-delay: 0.3s;
+  transition-duration: 0s;
+}
+
+.repeat-row-anim.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+/* view1 */
+
+.animationText {
+  height: 17em;
+  left: 50%;
+  position: absolute;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  width: 36em;
+}

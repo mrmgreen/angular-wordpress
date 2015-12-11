@@ -24,7 +24,6 @@ angular.module('myApp.view4', ['ngRoute'])
 .controller('view4Ctrl', ['tflJourney', function(tflJourney) {
 
     var self = this;
-    this.message = 'hello Bond';
 
     tflJourney.tflJourneyBalhamtoBank().then(function(response) {
       self.tflJourney = response.data;

@@ -1,10 +1,4 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
-
-<ul><li data-ng-repeat="x in posts.posts">
+<ul><li data-ng-repeat="x in posts.posts" class="repeat-row-anim">
   <h2>{{ x.title.rendered }}</h2>
   <p data-ng-bind-html="x.excerpt.rendered"></p>
   <p data-ng-bind-html="x.content.rendered"></p>

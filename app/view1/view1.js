@@ -101,8 +101,6 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
 
 .controller('View1Ctrl', ['view1Fact', 'terminalText', '$scope', '$timeout', function(view1Fact, terminalText, $scope, $timeout) {
     var self = this;
-    this.message = "Take the blue pill";
-    this.newMessage = view1Fact.newMessage;
     this.terminalText = terminalText.terminal('.terminal');
     view1Fact.pages().then(function(response) {
       self.homepage = response.data;
