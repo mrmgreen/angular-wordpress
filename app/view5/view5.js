@@ -9,7 +9,7 @@ angular.module('myApp.view5', ['ngRoute'])
     })
 }])
 
-.controller('journeyPlanner',['journeyPlannerFact', function(journeyPlannerFact) {
+.controller('journeyPlanner',['journeyPlannerFact', '$scope', function(journeyPlannerFact, $scope) {
     var self = this;
     this.journey = journeyPlannerFact.journey;
     this.destinations = {
@@ -23,8 +23,7 @@ angular.module('myApp.view5', ['ngRoute'])
       journeyPlannerFact.setJourney(self.master);
       journeyPlannerFact.promiseJourneyFeed().then(function(response) {
         self.promiseJourney = response.data;
-
-          console.log('journePlannerbulls', response.data);
+        console.log('journePlannerbulls', response.data);
       }, function(response) {
         console.log('error with journey', reponse.data);
       });
@@ -32,8 +31,16 @@ angular.module('myApp.view5', ['ngRoute'])
     this.customer = {
       name: 'Derek'
     }
-
-
+    this.setDestinationFrom = function(destinations) {
+     console.log('response', destinations );
+     self.destinations.from = destinations;
+     console.log('self destinations', self.destinations);
+     }
+    this.setDestinationTo = function(destinations) {
+     console.log('response', destinations );
+     self.destinations.to = destinations;
+     console.log('self destinations', self.destinations);
+     }
   }])
 
 .directive('myCustomer', function() {
@@ -43,7 +50,6 @@ angular.module('myApp.view5', ['ngRoute'])
 })
 
 .factory('journeyPlannerFact', ['$http', function($http) {
-    this.journey = this.journey || 'hello boss man';
 
     return {
       journey: this.journey,

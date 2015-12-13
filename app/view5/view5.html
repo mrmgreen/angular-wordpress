@@ -1,52 +1,47 @@
 <h2>Journey planner</h2>
 <br>
-<form novalidate>
-    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from">
-    <br>
-    <input type="text" placeholder="to" data-ng-model="view5.destinations.to">
-    <br>
-    <br>
-    <input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click">
-</form>
 
+<div class="input-group">
+	<form novalidate>
+	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from" class="form-control" aria-describedby="basic-addon1">
+	    <br>
+	    <input type="text" placeholder="to" data-ng-model="view5.destinations.to" class="form-control" aria-describedby="basic-addon1">
+	    <br>
+	    <br>
+	    <input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
+	</form>
+</div>
 
 <br>
 <br>
-<p>Testing</p>
 <div my-customer></div>
-<p>testing finish</p>
 <p>{{ view5.destinations.from }}</p>
 <p>{{ view5.destinations.to }}</p>
-<p>{{ view5.journeyPlanner }}</p>
 <p>{{ view5.journey }}</p>
 <pre>master = {{ view5.master | json }}</pre>
 <pre>promiseJourneyFeed = {{ view5.promiseJourney.$type }}</pre>
 
+
 <p>Please be more specific:</p>
 <p>From field:</p>
 
-<button class="btn btn-info"> bloomin heck</button>
-
-<p>{{ view5.modSometing }}</p>
 <ul><li data-ng-repeat="x in view5.promiseJourney.fromLocationDisambiguation.disambiguationOptions">
 
-
-
-
-
-
-    <button data-ng-model="view5.destinations.from" data-ng-click="view5.update(view5.destinations) value="{{}}"> {{ x.place.commonName }}</button>
-
+    <button data-ng-click="view5.setDestinationFrom(x.parameterValue)" value="{{ x.place.commonNam }}" class="btn btn-info"> {{ x.place.commonName }}</button>
 
     <p> {{ x.parameterValue }}</p>
-
-
 
 </li></ul>
 <p>To field:</p>
 <ul><li data-ng-repeat="x in view5.promiseJourney.toLocationDisambiguation.disambiguationOptions">
-    <p> {{ x.place.commonName }}</p>
+    
+    <button data-ng-click="view5.setDestinationTo(x.parameterValue)" value="{{ x.place.commonNam }}" class="btn btn-info"> {{ x.place.commonName }}</button>
+
+    <p> {{ x.parameterValue }}</p>
 </li></ul>
 
+<button data-ng-click="view5.update(view5.destinations)" class="btn btn-success">Search</button>
 
-<pre>promiseJourneyFeed = {{ view5.promiseJourney.toLocationDisambiguation.disambiguationOptions[0].place.commonName }}</pre>
+
+
+<pre>promiseJourneyFeed = {{ view5.promiseJourney.journeys }}</pre>

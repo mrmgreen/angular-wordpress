@@ -38,6 +38,19 @@ body { padding-top: 70px; background-color: #000; color: #fff; }
 
 .centerTextAfterAnim { display: block; text-align: center; color: pink; font-size: 40px;}
 .animationText { text-align: center;}
+input {
+  color:black;
+}
+
+input.form-control.ng-pristine.ng-untouched.ng-valid {    
+    width: 600px;
+    border-radius: 0.3em;
+    margin-bottom: 0.6em;
+}
+
+button.btn.btn-success.ng-scope {
+    margin-bottom: 0.6em;
+}
 
 /* fonts */
 
