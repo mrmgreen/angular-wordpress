@@ -9,9 +9,10 @@ angular.module('myApp.view5', ['ngRoute'])
     })
 }])
 
-.controller('journeyPlanner',['journeyPlannerFact', '$scope', function(journeyPlannerFact, $scope) {
+.controller('journeyPlanner',['journeyPlannerFact', 'querySearch', '$scope', '$log', function(journeyPlannerFact, querySearch, $scope, $log) {
     var self = this;
     this.journey = journeyPlannerFact.journey;
+    this.fromStopPoint;
     this.destinations = {
       from: '',
       to: ''
@@ -40,7 +41,33 @@ angular.module('myApp.view5', ['ngRoute'])
      console.log('response', destinations );
      self.destinations.to = destinations;
      console.log('self destinations', self.destinations);
-     }
+    }
+    //Takes from input text and queries tfl api with it.
+    this.searchChange = function(input) {
+      querySearch.setFrom(input);
+      querySearch.searchQuery().then(function(response) {
+        console.log('searchQuery', response.data);
+        self.fromStopPoint = response.data;
+      }, function(response) {
+        console.log('error with searchQuery', reponse.data);
+      });
+      console.log('change is guna come', input);
+    }
+
+  $scope.status = {
+    isopen: false
+  };
+
+  $scope.toggled = function(open) {
+    $log.log('Dropdown is now: ', open);
+  };
+
+  $scope.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.status.isopen = !$scope.status.isopen;
+  };
+
   }])
 
 .directive('myCustomer', function() {
@@ -48,6 +75,19 @@ angular.module('myApp.view5', ['ngRoute'])
     template: 'Name {{  view5.customer.name }}'
   };
 })
+
+.factory('querySearch', ['$http', function($http) {
+  return {
+    from: this.from,
+    setFrom: function(data) {
+      this.from = data;
+      console.log('this.from', this.from);
+    },
+    searchQuery: function() {
+      return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube,dlr,overground,tflrail,bus,river-bus,tram,cable-car,national-rail,river-tour&maxResults=25&faresOnly=false");
+    }
+  }
+}])
 
 .factory('journeyPlannerFact', ['$http', function($http) {
 
