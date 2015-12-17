@@ -49,26 +49,13 @@ angular.module('myApp.view5', ['ngRoute'])
       querySearch.searchQuery().then(function(response) {
         console.log('searchQuery', response.data);
         self.fromStopPoint = response.data;
+        // configuring bootstrap dropdown
       }, function(response) {
         console.log('error with searchQuery', reponse.data);
       });
       console.log('change is guna come', input);
     }
 
-  // configuring bootstrap dropdown
-  $scope.status = {
-    isopen: true
-  };
-
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
 
   }])
 
@@ -86,7 +73,7 @@ angular.module('myApp.view5', ['ngRoute'])
       console.log('this.from', this.from);
     },
     searchQuery: function() {
-      return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube,dlr,overground,tflrail,bus,river-bus,tram,cable-car,national-rail,river-tour&maxResults=25&faresOnly=false");
+      return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube");
     }
   }
 }])

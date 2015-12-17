@@ -3,22 +3,9 @@
 
 <div class="input-group">
 	<form novalidate>
-	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from" ng-change="view5.searchChange(view5.destinations.from)" class="form-control" aria-describedby="basic-addon1">
+	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from" ng-change="view5.searchChange(view5.destinations.from)" class="form-control" aria-describedby="basic-addon1" maxlength="100">
 	    <br>
-<div>
-    <!-- Simple dropdown -->
-    <span uib-dropdown on-toggle="toggled(open)" is-open="status.isopen" >
-      <a href id="simple-dropdown" uib-dropdown-toggle>
-        Click me for a dropdown, yos!
-      </a>
-      <ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
-        <li data-ng-repeat="x in view5.fromStopPoint.matches">
-          <a href>{{x.name}}</a>
-        </li>
-      </ul>
-    </span>
-</div>
-	    <p data-ng-repeat="x in view5.fromStopPoint.matches">{{ x.name }}</p>
+        <ul><li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.destinations.from" class="form-control journeyresultsli">{{ x.name }}</li></ul>
 	    <input type="text" placeholder="to" data-ng-model="view5.destinations.to" class="form-control" aria-describedby="basic-addon1">
 	    <br>
 	    <br>
