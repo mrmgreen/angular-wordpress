@@ -42,6 +42,7 @@ angular.module('myApp.view5', ['ngRoute'])
      self.destinations.to = destinations;
      console.log('self destinations', self.destinations);
     }
+
     //Takes from input text and queries tfl api with it.
     this.searchChange = function(input) {
       querySearch.setFrom(input);
@@ -54,8 +55,9 @@ angular.module('myApp.view5', ['ngRoute'])
       console.log('change is guna come', input);
     }
 
+  // configuring bootstrap dropdown
   $scope.status = {
-    isopen: false
+    isopen: true
   };
 
   $scope.toggled = function(open) {
