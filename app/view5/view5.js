@@ -59,7 +59,7 @@ angular.module('myApp.view5', ['ngRoute'])
     }
 
     // from input options clicked
-    this.testme = function(input) {
+    this.journeyToOptionsClick = function(input) {
       console.log('testme now', input);
       self.destinations.from = input.name;
       self.showhidelist = 'hide';
