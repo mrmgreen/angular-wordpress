@@ -89,3 +89,5 @@ h2.terminal { font-family: VT323, Arial, serif; font-weight: 400; color:rgb(0, 2
 .journeyresultsli:hover {
   background-color: #f1f1f1;
 }
+.hide {display: none}
+.show {display: block;}

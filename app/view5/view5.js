@@ -19,6 +19,7 @@ angular.module('myApp.view5', ['ngRoute'])
     };
     this.master = {};
     this.promiseJourney = '';
+    this.showhidelist = 'show';
     this.update = function(destinations) {
       self.master = angular.copy(destinations);
       journeyPlannerFact.setJourney(self.master);
@@ -49,6 +50,7 @@ angular.module('myApp.view5', ['ngRoute'])
       querySearch.searchQuery().then(function(response) {
         console.log('searchQuery', response.data);
         self.fromStopPoint = response.data;
+        self.showhidelist = 'show';
         // configuring bootstrap dropdown
       }, function(response) {
         console.log('error with searchQuery', reponse.data);
@@ -56,8 +58,14 @@ angular.module('myApp.view5', ['ngRoute'])
       console.log('change is guna come', input);
     }
 
+    // from input options clicked
+    this.testme = function(input) {
+      console.log('testme now', input);
+      self.destinations.from = input.name;
+      self.showhidelist = 'hide';
+    }
 
-  }])
+}])
 
 .directive('myCustomer', function() {
   return {
