@@ -3,13 +3,23 @@
 
 <div class="input-group">
 	<form novalidate>
-	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from" ng-change="view5.searchChange(view5.destinations.from)" class="form-control" aria-describedby="basic-addon1" maxlength="100">
+	   
+	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from" ng-change="view5.searchChange(view5.destinations.from, 'from')" class="form-control" aria-describedby="basic-addon1" maxlength="100">
 	    <br>
-        <ul ng-class="view5.showhidelist"><li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li></ul>
-	    <input type="text" placeholder="to" data-ng-model="view5.destinations.to" class="form-control" aria-describedby="basic-addon1">
+        <ul ng-class="view5.showhidelistFrom">
+        	<li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
+        </ul>
+
+
+	    <input type="text" placeholder="to" data-ng-model="view5.destinations.to" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100">
 	    <br>
+        <ul ng-class="view5.showhidelistTo">
+        	<li data-ng-repeat="x in view5.toStopPoint.matches" data-ng-click="view5.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
+        </ul>
 	    <br>
 	    <input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
+
+
 	</form>
 </div>
 

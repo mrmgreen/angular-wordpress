@@ -19,7 +19,8 @@ angular.module('myApp.view5', ['ngRoute'])
     };
     this.master = {};
     this.promiseJourney = '';
-    this.showhidelist = 'show';
+    this.showhidelistFrom = 'show';
+    this.showhidelistTo = 'show';
     this.update = function(destinations) {
       self.master = angular.copy(destinations);
       journeyPlannerFact.setJourney(self.master);
@@ -45,13 +46,18 @@ angular.module('myApp.view5', ['ngRoute'])
     }
 
     //Takes from input text and queries tfl api with it.
-    this.searchChange = function(input) {
+    this.searchChange = function(input, fromOrTo) {
       querySearch.setFrom(input);
+      console.log('fromOrTo', fromOrTo);
       querySearch.searchQuery().then(function(response) {
         console.log('searchQuery', response.data);
+        if (fromOrTo === 'from') { 
         self.fromStopPoint = response.data;
-        self.showhidelist = 'show';
-        // configuring bootstrap dropdown
+        self.showhidelistFrom = 'show';
+      } else if (fromOrTo === 'to') {
+        self.toStopPoint = response.data;
+        self.showhidelistTo = 'show';
+      }
       }, function(response) {
         console.log('error with searchQuery', reponse.data);
       });
@@ -59,12 +65,17 @@ angular.module('myApp.view5', ['ngRoute'])
     }
 
     // from input options clicked
-    this.journeyToOptionsClick = function(input) {
+    this.journeyFromOptionsClick = function(input) {
       console.log('testme now', input);
       self.destinations.from = input.name;
-      self.showhidelist = 'hide';
+      self.showhidelistFrom = 'hide';
     }
-
+    // to input options clicked
+    this.journeyToOptionsClick = function(input) {
+      console.log('testme now', input);
+      self.destinations.to = input.name;
+      self.showhidelistTo = 'hide';
+    }
 }])
 
 .directive('myCustomer', function() {
