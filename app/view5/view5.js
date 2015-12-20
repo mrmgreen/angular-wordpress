@@ -68,12 +68,14 @@ angular.module('myApp.view5', ['ngRoute'])
     this.journeyFromOptionsClick = function(input) {
       console.log('testme now', input);
       self.destinations.from.name = input.name;
+      self.destinations.from.icsId = input.icsId;
       self.showhidelistFrom = 'hide';
     }
     // to input options clicked
     this.journeyToOptionsClick = function(input) {
       console.log('testme now', input);
       self.destinations.to.name = input.name;
+      self.destinations.to.icsId = input.icsId;
       self.showhidelistTo = 'hide';
     }
 }])
@@ -91,7 +93,6 @@ angular.module('myApp.view5', ['ngRoute'])
       this.from = data.name;
     },
     searchQuery: function() {
-      console.log('feed searchQuery: ', "https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tub");
      return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube");
     }
   }
@@ -103,6 +104,7 @@ angular.module('myApp.view5', ['ngRoute'])
       journey: this.journey,
       setJourney: function (data) {
         this.journey = data;
+        console.log('setJourney this.journey', this.journey);
       },
       getJourney: function () {
         return this.journey

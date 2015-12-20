@@ -3,14 +3,11 @@
 
 <div class="input-group">
 	<form novalidate>
-	   
 	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from.name" ng-change="view5.searchChange(view5.destinations.from, 'from')" class="form-control" aria-describedby="basic-addon1" maxlength="100">
 	    <br>
         <ul ng-class="view5.showhidelistFrom">
         	<li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
         </ul>
-
-
 	    <input type="text" placeholder="to" data-ng-model="view5.destinations.to.name" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100">
 	    <br>
         <ul ng-class="view5.showhidelistTo">
@@ -18,41 +15,21 @@
         </ul>
 	    <br>
 	    <input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
-
-
 	</form>
 </div>
-
 <br>
 <br>
 <div my-customer></div>
-<p>{{ view5.destinations.from }}</p>
-<p>{{ view5.destinations.to }}</p>
-<p>{{ view5.journey }}</p>
 <pre>master = {{ view5.master | json }}</pre>
-<pre>promiseJourneyFeed = {{ view5.promiseJourney.$type }}</pre>
-
-
-<p>Please be more specific:</p>
-<p>From field:</p>
-
-<ul><li data-ng-repeat="x in view5.promiseJourney.fromLocationDisambiguation.disambiguationOptions">
-
-    <button data-ng-click="view5.setDestinationFrom(x.parameterValue)" value="{{ x.place.commonNam }}" class="btn btn-info"> {{ x.place.commonName }}</button>
-
-    <p> {{ x.parameterValue }}</p>
-
-</li></ul>
-<p>To field:</p>
-<ul><li data-ng-repeat="x in view5.promiseJourney.toLocationDisambiguation.disambiguationOptions">
-    
-    <button data-ng-click="view5.setDestinationTo(x.parameterValue)" value="{{ x.place.commonNam }}" class="btn btn-info"> {{ x.place.commonName }}</button>
-
-    <p> {{ x.parameterValue }}</p>
-</li></ul>
-
-<button data-ng-click="view5.update(view5.destinations)" class="btn btn-success">Search</button>
-
-
-
-<pre>promiseJourneyFeed = {{ view5.promiseJourney.journeys }}</pre>
+<ul>
+	<li data-ng-repeat="x in view5.promiseJourney.journeys">
+		<p>{{x.routeOptions}}</p>
+		<p>Duration: {{x.duration}}</p>
+		<p>Departure time: {{x.startDateTime}}</p>
+		<p>Arrival time: {{x.arrivalDateTime}}</p>
+		<p>legs: {{x.legs[0].duration}}</p>
+		<li data-ng-repeat="child in x.legs">
+			<p>child: {{child.duration}}</p>
+		</li>
+	</li>
+</ul>
