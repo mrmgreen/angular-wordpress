@@ -14,8 +14,8 @@ angular.module('myApp.view5', ['ngRoute'])
     this.journey = journeyPlannerFact.journey;
     this.fromStopPoint;
     this.destinations = {
-      from: '',
-      to: ''
+      from: {name: '', icsId: ''},
+      to: {name: '', icsId: ''},
     };
     this.master = {};
     this.promiseJourney = '';
@@ -47,12 +47,12 @@ angular.module('myApp.view5', ['ngRoute'])
 
     //Takes from input text and queries tfl api with it.
     this.searchChange = function(input, fromOrTo) {
-      querySearch.setFrom(input);
-      console.log('fromOrTo', fromOrTo);
+      querySearch.setQuery(input);
       querySearch.searchQuery().then(function(response) {
         console.log('searchQuery', response.data);
         if (fromOrTo === 'from') { 
         self.fromStopPoint = response.data;
+        console.log('fromStopPoint', self.fromStopPoint);
         self.showhidelistFrom = 'show';
       } else if (fromOrTo === 'to') {
         self.toStopPoint = response.data;
@@ -67,13 +67,13 @@ angular.module('myApp.view5', ['ngRoute'])
     // from input options clicked
     this.journeyFromOptionsClick = function(input) {
       console.log('testme now', input);
-      self.destinations.from = input.name;
+      self.destinations.from.name = input.name;
       self.showhidelistFrom = 'hide';
     }
     // to input options clicked
     this.journeyToOptionsClick = function(input) {
       console.log('testme now', input);
-      self.destinations.to = input.name;
+      self.destinations.to.name = input.name;
       self.showhidelistTo = 'hide';
     }
 }])
@@ -87,12 +87,12 @@ angular.module('myApp.view5', ['ngRoute'])
 .factory('querySearch', ['$http', function($http) {
   return {
     from: this.from,
-    setFrom: function(data) {
-      this.from = data;
-      console.log('this.from', this.from);
+    setQuery: function(data) {
+      this.from = data.name;
     },
     searchQuery: function() {
-      return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube");
+      console.log('feed searchQuery: ', "https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tub");
+     return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube");
     }
   }
 }])
@@ -108,7 +108,7 @@ angular.module('myApp.view5', ['ngRoute'])
         return this.journey
       },
       promiseJourneyFeed: function() {
-        return $http.get('https://api.tfl.gov.uk/journey/journeyresults/' + this.journey.from + '/to/' + this.journey.to);
+        return $http.get('https://api.tfl.gov.uk/journey/journeyresults/' + this.journey.from.icsId + '/to/' + this.journey.to.icsId);
       }
     }
 }]);
