@@ -23,13 +23,20 @@
 <pre>master = {{ view5.master | json }}</pre>
 <ul>
 	<li data-ng-repeat="x in view5.promiseJourney.journeys">
-		<p>{{x.routeOptions}}</p>
-		<p>Duration: {{x.duration}}</p>
-		<p>Departure time: {{x.startDateTime}}</p>
-		<p>Arrival time: {{x.arrivalDateTime}}</p>
-		<p>legs: {{x.legs[0].duration}}</p>
-		<li data-ng-repeat="child in x.legs">
-			<p>child: {{child.duration}}</p>
-		</li>
+		<p>Duration: {{x.duration}} minutes</p>
+		<p>Departure time: {{x.startDateTime | date:'shortTime'}}</p>
+		<p>Arrival time: {{x.arrivalDateTime | date:'shortTime'}}</p>
+		<p>legs:</p>
+		<ul>
+			<li data-ng-repeat="leg in x.legs">
+				<p>Instruction: {{leg.instruction.detailed}}</p>
+				<p>Depart: {{leg.departurePoint.commonName}}</p>
+				<p>Arrive at: {{leg.arrivalPoint.commonName}}</p>
+				<p>Duration: {{leg.duration}} minutes</p>
+				<p>Departure time: {{leg.departureTime | date:'shortTime'}}</p>
+				<p>Arrival time: {{leg.arrivalTime | date:'shortTime'}}</p>
+				<p>Mode of transport: {{leg.mode.name}}</p>
+			</li>
+		</ul>
 	</li>
 </ul>
