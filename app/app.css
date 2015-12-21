@@ -42,12 +42,21 @@ input {
   color:black;
 }
 
-input.form-control.ng-pristine.ng-untouched.ng-valid {    
-    width: 600px;
-    border-radius: 0.3em;
-    margin-bottom: 0.6em;
+form>input.form-control:first-child.ng-pristine{
+  width: 100%;
+  border-radius: 0.3em;
+  margin-bottom: 0.6em;
 }
 
+.input-group .form-control:not(:first-child):not(:last-child){
+  width: 100%;
+  border-radius: 0.3em;
+  margin-bottom: 0.6em;
+}
+
+input.form-control.ng-dirty {
+  background-color: #b3d4fc;
+}
 button.btn.btn-success.ng-scope {
     margin-bottom: 0.6em;
 }

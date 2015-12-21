@@ -1,42 +1,55 @@
-<h2>Journey planner</h2>
-<br>
-
-<div class="input-group">
-	<form novalidate>
-	    <input type="text" placeHolder="from" data-ng-model="view5.destinations.from.name" ng-change="view5.searchChange(view5.destinations.from, 'from')" class="form-control" aria-describedby="basic-addon1" maxlength="100">
-	    <br>
-        <ul ng-class="view5.showhidelistFrom">
-        	<li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
-        </ul>
-	    <input type="text" placeholder="to" data-ng-model="view5.destinations.to.name" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100">
-	    <br>
-        <ul ng-class="view5.showhidelistTo">
-        	<li data-ng-repeat="x in view5.toStopPoint.matches" data-ng-click="view5.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
-        </ul>
-	    <br>
-	    <input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
-	</form>
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Journey planner</h2>
+	</div>
 </div>
-<br>
-<br>
-<div my-customer></div>
-<pre>master = {{ view5.master | json }}</pre>
-<ul>
-	<li data-ng-repeat="x in view5.promiseJourney.journeys">
-		<p>Duration: {{x.duration}} minutes</p>
-		<p>Departure time: {{x.startDateTime | date:'shortTime'}}</p>
-		<p>Arrival time: {{x.arrivalDateTime | date:'shortTime'}}</p>
-		<p>legs:</p>
-		<ul>
-			<li data-ng-repeat="leg in x.legs">
-				<p>Instruction: {{leg.instruction.detailed}}</p>
-				<p>Depart: {{leg.departurePoint.commonName}}</p>
-				<p>Arrive at: {{leg.arrivalPoint.commonName}}</p>
-				<p>Duration: {{leg.duration}} minutes</p>
-				<p>Departure time: {{leg.departureTime | date:'shortTime'}}</p>
-				<p>Arrival time: {{leg.arrivalTime | date:'shortTime'}}</p>
-				<p>Mode of transport: {{leg.mode.name}}</p>
-			</li>
+<div class="row">
+	<div class="col-md-4">
+		<form novalidate>
+			<div class="form-group">
+				<label for="fromInput">Departure tube station</label>
+				<input type="text" placeHolder="from" data-ng-model="view5.destinations.from.name" ng-change="view5.searchChange(view5.destinations.from, 'from')" id="fromInput" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+			</div>
+			<ul ng-class="view5.showhidelistFrom">
+				<li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
+			</ul>
+			<div class="form-group">
+				<label for="fromInput">Destination tube station</label>
+				<input type="text" placeholder="to" data-ng-model="view5.destinations.to.name" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+			</div>
+				<br>
+			<ul ng-class="view5.showhidelistTo">
+				<li data-ng-repeat="x in view5.toStopPoint.matches" data-ng-click="view5.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
+			</ul>
+			<br>
+			<input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
+		</form>
+
+	</div>
+	<div class="col-md-8">
+		<div my-customer></div>
+		<pre>master = {{ view5.master | json }}</pre>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+			<dl data-ng-repeat="x in view5.promiseJourney.journeys" class="dl-horizontal">
+				<h3>Option {{$index +1}}</h3>
+				<dt>Duration:</dt><dd>{{x.duration}} minutes</dd>
+				<dt>Departure time:</dt><dd> {{x.startDateTime | date:'shortTime'}}</dd>
+				<dt>Arrival time:</dt><dd> {{x.arrivalDateTime | date:'shortTime'}}</dd>
+				<h4>legs:</h4>
+					<dl data-ng-repeat="leg in x.legs" class="dl-horizontal">
+						<dt>Instruction:</dt><dd> {{leg.instruction.detailed}}</dd>
+						<dt>Depart:</dt><dd> {{leg.departurePoint.commonName}}</dd>
+						<dt>Arrive at:</dt><dd> {{leg.arrivalPoint.commonName}}</dd>
+						<dt>Duration:</dt><dd> {{leg.duration}} minutes</dd>
+						<dt>Departure time:</dt><dd> {{leg.departureTime | date:'shortTime'}}</dd>
+						<dt>Arrival time:</dt><dd> {{leg.arrivalTime | date:'shortTime'}}</dd>
+						<dt>Mode of transport:</dt><dd> {{leg.mode.name}}</dd>
+					</dl>
+
+			</dl>
 		</ul>
-	</li>
-</ul>
+	</div>
+</div>
