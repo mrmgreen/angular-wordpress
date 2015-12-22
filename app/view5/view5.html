@@ -5,24 +5,32 @@
 </div>
 <div class="row">
 	<div class="col-md-4">
-		<form novalidate>
+		<form novalidate name="journeyplannerform">
 			<div class="form-group">
 				<label for="fromInput">Departure tube station</label>
-				<input type="text" placeHolder="from" data-ng-model="view5.destinations.from.name" ng-change="view5.searchChange(view5.destinations.from, 'from')" id="fromInput" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+				<input type="text" name="journeyfrom" placeHolder="from" data-ng-model="view5.destinations.from.name" ng-change="view5.searchChange(view5.destinations.from, 'from')" id="fromInput" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+				<div data-ng-show="journeyplannerform.$submitted && journeyplannerform.journeyfrom.$error.required" class="form-control alert-danger alert-message" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					Enter a departure location
+				</div>
 			</div>
 			<ul ng-class="view5.showhidelistFrom">
 				<li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
 			</ul>
 			<div class="form-group">
 				<label for="fromInput">Destination tube station</label>
-				<input type="text" placeholder="to" data-ng-model="view5.destinations.to.name" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+				<input type="text" name="journeyto" placeholder="to" data-ng-model="view5.destinations.to.name" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+				<div data-ng-show="journeyplannerform.$submitted && journeyplannerform.journeyto.$error.required" class="form-control alert-danger alert-message" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					Enter a destination location
+				</div>
 			</div>
-				<br>
 			<ul ng-class="view5.showhidelistTo">
 				<li data-ng-repeat="x in view5.toStopPoint.matches" data-ng-click="view5.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
 			</ul>
-			<br>
-			<input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
+			<button type="submit" data-ng-click="view5.update(view5.destinations)" class="btn btn-success">Click</button>
 		</form>
 
 	</div>
