@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
+angular.module('myApp.terminaltext', ['ngRoute', 'ngSanitize', 'myApp.config'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl',
-    controllerAs: 'view1'
+  $routeProvider.when('/terminaltext', {
+    templateUrl: 'components/terminaltext/terminaltext.html',
+    controller: 'TerminalTextCtrl',
+    controllerAs: 'terminaltext'
   });
 }])
 
@@ -99,7 +99,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngSanitize', 'myApp.config'])
   }
 }])
 
-.controller('View1Ctrl', ['view1Fact', 'terminalText', '$scope', '$timeout', function(view1Fact, terminalText, $scope, $timeout) {
+.controller('TerminalTextCtrl', ['view1Fact', 'terminalText', '$scope', '$timeout', function(view1Fact, terminalText, $scope, $timeout) {
     var self = this;
     this.terminalText = terminalText.terminal('.terminal');
     view1Fact.pages().then(function(response) {

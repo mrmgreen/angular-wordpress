@@ -4,7 +4,7 @@ angular.module('myApp.starwarsText', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/starwars', {
-    templateUrl: 'starwars-text-anim/starwars.html',
+    templateUrl: 'components/starwars-text-anim/starwars.html',
     controller: 'starwars',
     controllerAs: 'starwarsText'
   });
@@ -38,13 +38,13 @@ angular.module('myApp.starwarsText', ['ngRoute'])
 })
 
 .controller('starwars', ['bylineAnim', '$scope', '$location', function(byline, $scope, $location) {
-	// $scope.test = function() { $location.path('/view1'); }
+	// $scope.test = function() { $location.path('/terminaltext'); }
 	// $scope.test();
 	$scope.byline;
 	$scope.animationEnd = function(){
 		function myScript() { 
 			console.log('anim is working wahooo!', $location.path());
-			$location.path('/view1');
+			$location.path('/terminaltext');
 			$scope.$apply();
 		}
 		document.querySelector('.martin').addEventListener("animationend", myScript);

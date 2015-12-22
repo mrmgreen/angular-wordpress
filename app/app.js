@@ -6,11 +6,11 @@ angular.module('myApp', [
   'ngAnimate',
   'myApp.config',
   'myApp.navBar',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.view3',
+  'myApp.terminaltext',
+  'myApp.posts',
+  'myApp.tubestatuses',
   'myApp.view4',
-  'myApp.view5',
+  'myApp.journeyplanner',
   'myApp.starwarsText',
   'myApp.version'
 ]).

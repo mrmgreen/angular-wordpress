@@ -1,11 +1,11 @@
-angular.module('myApp.view5', ['ngRoute'])
+angular.module('myApp.journeyplanner', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
-    .when('/view5', {
+    .when('/journeyplanner', {
       controller: 'journeyPlanner',
-      templateUrl: 'view5/view5.html',
-      controllerAs: 'view5'
+      templateUrl: 'journeyplanner/journeyplanner.html',
+      controllerAs: 'journeyplanner'
     })
 }])
 
@@ -82,7 +82,7 @@ angular.module('myApp.view5', ['ngRoute'])
 
 .directive('myCustomer', function() {
   return {
-    template: 'Name {{  view5.customer.name }}'
+    template: 'Name {{  journeyplanner.customer.name }}'
   };
 })
 

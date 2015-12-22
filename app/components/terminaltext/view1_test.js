@@ -1,8 +1,8 @@
 'use strict';
 
-fdescribe('myApp.view1 module', function() {
+fdescribe('myApp.terminaltext module', function() {
 
-  beforeEach(module('myApp.view1'));
+  beforeEach(module('myApp.terminaltext'));
   beforeEach(module('myApp.config'));
 
   var httpBackend,
@@ -17,7 +17,7 @@ fdescribe('myApp.view1 module', function() {
     httpBackend = $httpBackend;
     //$httpBackend.whenGET(myConfig.wordpressPages).respond(jsonResponse);
     $httpBackend.whenGET(/(wp-json\/wp\/v2\/posts$)/).respond(jsonResponse);
-    $controller('View1Ctrl as view1', {
+    $controller('TerminaltextCtrl as terminaltext', {
       $scope: scope,
       $http: $http
     });
@@ -31,7 +31,7 @@ fdescribe('myApp.view1 module', function() {
     expect(myConfig.wordpressPosts).toBeDefined();
   });
 
-  it('mock httpbackend test view1 homepage promise', inject(function($httpBackend) {
+  it('mock httpbackend test terminaltext homepage promise', inject(function($httpBackend) {
     $httpBackend.whenGET(myConfig.wordpressPages).respond(jsonResponse);
     httpBackend.flush();
     expect(scope.view1.homepage).toEqual(jasmine.objectContaining({ title: 'first page' }));

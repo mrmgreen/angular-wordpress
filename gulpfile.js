@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell');
+var concat = require('gulp-concat');
 
 /**
  * Run jasmine tests

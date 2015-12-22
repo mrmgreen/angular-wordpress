@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('myApp.view3', ['ngRoute'])
+angular.module('myApp.tubestatuses', ['ngRoute'])
 
   .config(['$routeProvider', function($routeProvider) {
       $routeProvider
-        .when('/view3', {
-          templateUrl: 'view3/view3.html',
-          controller: 'view3Ctrl',
-          controllerAs: 'view3Tfl'
+        .when('/tubestatuses', {
+          templateUrl: 'components/tubestatuses/tubestatuses.html',
+          controller: 'tubestatusesCtrl',
+          controllerAs: 'tubestatusesTfl'
         })
   }])
 
-  .factory('view3Tfl', ['$http', function($http) {
+  .factory('tubestatusesTfl', ['$http', function($http) {
 
     return {
       message: 'somebody stop me!',
@@ -27,13 +27,13 @@ angular.module('myApp.view3', ['ngRoute'])
     }
   }])
 
-  .controller('view3Ctrl', ['view3Tfl', function(view3Tfl) {
+  .controller('tubestatusesCtrl', ['tubestatusesTfl', function(tubestatusesTfl) {
 
     var self = this;
     this.message = 'helloo monkey';
-    this.viewMsg = view3Tfl.message;
+    this.viewMsg = tubestatusesTfl.message;
 
-      view3Tfl.tfl().then(function(response) {
+      tubestatusesTfl.tfl().then(function(response) {
         self.tfl = response.data;
       },
         function(data) {
@@ -44,10 +44,10 @@ angular.module('myApp.view3', ['ngRoute'])
 
 
 
-//  .controller('view3Ctrl', view3Ctrl)
+//  .controller('tubestatusesCtrl', tubestatusesCtrl)
 //
 //  .factory('tfl', tfl);
 //
-//function view3Ctrl() {}
+//function tubestatusesCtrl() {}
 //
 //function tfl() {}
