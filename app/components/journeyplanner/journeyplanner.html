@@ -1,18 +1,3 @@
-<!-- typeahead -->
-
-<div class='container-fluid typeahead-demo'>
-
-   <h4>Asynchronous results</h4>
-    <pre>Model: {{asyncSelected | json}}</pre>
-    <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
-    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-    <div ng-show="noResults">
-      <i class="glyphicon glyphicon-remove"></i> No Results Found
-    </div>
-
-</div>
-<!-- end of typeahead -->
-
 <div class="row">
 	<div class="col-sm-12">
 		<h2>Journey planner</h2>
@@ -23,7 +8,7 @@
 		<form novalidate name="journeyplannerform">
 			<div class="form-group">
 				<label for="fromInput">Departure tube station</label>
-				<input type="text" name="journeyfrom" placeHolder="from" data-ng-model="journeyplanner.destinations.from.name" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
+				<input type="text" name="journeyfrom" placeHolder="from" data-ng-model="journeyplanner.destinations.from" uib-typeahead="location as location.name for location in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
 				<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 			    <div ng-show="noResults">
 			      <i class="glyphicon glyphicon-remove"></i> No Results Found
@@ -33,19 +18,11 @@
 					<span class="sr-only">Error:</span>
 					Enter a departure location
 				</div>
-
-<!-- 				<label for="fromInput">Departure tube station</label>
-				<input type="text" name="journeyfrom" placeHolder="from" data-ng-model="journeyplanner.destinations.from.name" ng-change="journeyplanner.searchChange(journeyplanner.destinations.from, 'from')" id="fromInput" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
-				<div data-ng-show="journeyplannerform.$submitted && journeyplannerform.journeyfrom.$error.required" class="form-control alert-danger alert-message" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<span class="sr-only">Error:</span>
-					Enter a departure location
-				</div> -->
 			</div>
 	
 			<div class="form-group">
 				<label for="fromInput">Destination tube station</label>
-				<input type="text" name="journeyto" placeholder="to" data-ng-model="journeyplanner.destinations.to.name" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
+				<input type="text" name="journeyto" placeholder="to" data-ng-model="journeyplanner.destinations.to" uib-typeahead="location as location.name for location in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
 				<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 			    <div ng-show="noResults">
 			      <i class="glyphicon glyphicon-remove"></i> No Results Found
@@ -57,13 +34,14 @@
 				</div>
 			</div>
 
-			<button type="submit" data-ng-click="journeyplanner.update(journeyplanner.destinations)" class="btn btn-success">Click</button>
+			<button type="submit" data-ng-click="journeyplanner.update()" class="btn btn-success">Click</button>
 		</form>
 
 	</div>
 	<div class="col-md-8">
 		<div my-customer></div>
-		<pre>master = {{ journeyplanner.master | json }}</pre>
+		<pre>master = {{ journeyplanner.destinations.from | json }}</pre>
+		<pre>masters of the galaxy = {{ journeyplanner.destinations.from.name | json }}</pre>
 	</div>
 </div>
 <div class="row">
