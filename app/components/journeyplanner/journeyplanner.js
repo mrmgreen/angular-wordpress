@@ -9,7 +9,25 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
     })
 }])
 
-.controller('journeyPlanner',['journeyPlannerFact', 'querySearch', '$scope', '$log', function(journeyPlannerFact, querySearch, $scope, $log) {
+.controller('journeyPlanner',['journeyPlannerFact', '$scope', '$log', '$http', function(journeyPlannerFact, $scope, $log, $http) {
+ 
+/* typeahead */
+/* returns location from query input */
+  $scope.getLocation = function(val) {
+    return $http.get('https://api.tfl.gov.uk/StopPoint/search', {
+      params: {
+        query: val,
+        modes: 'tube'
+      }
+    }).then(function(response){
+      return response.data.matches.map(function(item){
+        console.log('there async', item.name);
+        return item.name;
+      });
+    });
+  };
+  //typeahead end
+
     var self = this;
     this.journey = journeyPlannerFact.journey;
     this.fromStopPoint;
@@ -31,6 +49,8 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
         console.log('error with journey', reponse.data);
       });
     };
+    
+    /* directive customer name */
     this.customer = {
       name: 'Derek'
     }
@@ -43,25 +63,6 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
      console.log('response', destinations );
      self.destinations.to = destinations;
      console.log('self destinations', self.destinations);
-    }
-
-    //Takes from input text and queries tfl api with it.
-    this.searchChange = function(input, fromOrTo) {
-      querySearch.setQuery(input);
-      querySearch.searchQuery().then(function(response) {
-        console.log('searchQuery', response.data);
-        if (fromOrTo === 'from') { 
-        self.fromStopPoint = response.data;
-        console.log('fromStopPoint', self.fromStopPoint);
-        self.showhidelistFrom = 'show';
-      } else if (fromOrTo === 'to') {
-        self.toStopPoint = response.data;
-        self.showhidelistTo = 'show';
-      }
-      }, function(response) {
-        console.log('error with searchQuery', reponse.data);
-      });
-      console.log('change is guna come', input);
     }
 
     // from input options clicked
@@ -85,18 +86,6 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
     template: 'Name {{  journeyplanner.customer.name }}'
   };
 })
-
-.factory('querySearch', ['$http', function($http) {
-  return {
-    from: this.from,
-    setQuery: function(data) {
-      this.from = data.name;
-    },
-    searchQuery: function() {
-     return $http.get("https://api.tfl.gov.uk/StopPoint/search?query=" + this.from + "&modes=tube");
-    }
-  }
-}])
 
 .factory('journeyPlannerFact', ['$http', function($http) {
 
