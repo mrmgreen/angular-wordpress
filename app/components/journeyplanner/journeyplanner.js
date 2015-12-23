@@ -4,7 +4,7 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
   $routeProvider
     .when('/journeyplanner', {
       controller: 'journeyPlanner',
-      templateUrl: 'journeyplanner/journeyplanner.html',
+      templateUrl: 'components/journeyplanner/journeyplanner.html',
       controllerAs: 'journeyplanner'
     })
 }])

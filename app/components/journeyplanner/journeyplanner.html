@@ -8,32 +8,32 @@
 		<form novalidate>
 			<div class="form-group">
 				<label for="fromInput">Departure tube station</label>
-				<input type="text" placeHolder="from" data-ng-model="view5.destinations.from.name" ng-change="view5.searchChange(view5.destinations.from, 'from')" id="fromInput" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+				<input type="text" placeHolder="from" data-ng-model="journeyplanner.destinations.from.name" ng-change="journeyplanner.searchChange(journeyplanner.destinations.from, 'from')" id="fromInput" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
 			</div>
-			<ul ng-class="view5.showhidelistFrom">
-				<li data-ng-repeat="x in view5.fromStopPoint.matches" data-ng-click="view5.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
+			<ul ng-class="journeyplanner.showhidelistFrom">
+				<li data-ng-repeat="x in journeyplanner.fromStopPoint.matches" data-ng-click="journeyplanner.journeyFromOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
 			</ul>
 			<div class="form-group">
 				<label for="fromInput">Destination tube station</label>
-				<input type="text" placeholder="to" data-ng-model="view5.destinations.to.name" ng-change="view5.searchChange(view5.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
+				<input type="text" placeholder="to" data-ng-model="journeyplanner.destinations.to.name" ng-change="journeyplanner.searchChange(journeyplanner.destinations.to, 'to')" class="form-control" aria-describedby="basic-addon1" maxlength="100" required>
 			</div>
 				<br>
-			<ul ng-class="view5.showhidelistTo">
-				<li data-ng-repeat="x in view5.toStopPoint.matches" data-ng-click="view5.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
+			<ul ng-class="journeyplanner.showhidelistTo">
+				<li data-ng-repeat="x in journeyplanner.toStopPoint.matches" data-ng-click="journeyplanner.journeyToOptionsClick(x)" class="form-control journeyresultsli">{{ x.name }}</li>
 			</ul>
 			<br>
-			<input type="submit" data-ng-click="view5.update(view5.destinations)" value="Click" class="btn btn-success">
+			<input type="submit" data-ng-click="journeyplanner.update(journeyplanner.destinations)" value="Click" class="btn btn-success">
 		</form>
 
 	</div>
 	<div class="col-md-8">
 		<div my-customer></div>
-		<pre>master = {{ view5.master | json }}</pre>
+		<pre>master = {{ journeyplanner.master | json }}</pre>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
-			<dl data-ng-repeat="x in view5.promiseJourney.journeys" class="dl-horizontal">
+			<dl data-ng-repeat="x in journeyplanner.promiseJourney.journeys" class="dl-horizontal">
 				<h3>Option {{$index +1}}</h3>
 				<dt>Duration:</dt><dd>{{x.duration}} minutes</dd>
 				<dt>Departure time:</dt><dd> {{x.startDateTime | date:'shortTime'}}</dd>

@@ -9,7 +9,6 @@ angular.module('myApp', [
   'myApp.terminaltext',
   'myApp.posts',
   'myApp.tubestatuses',
-  'myApp.view4',
   'myApp.journeyplanner',
   'myApp.starwarsText',
   'myApp.version'

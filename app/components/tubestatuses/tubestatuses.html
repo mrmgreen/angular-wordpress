@@ -1,6 +1,6 @@
 <p>Tube statuses</p>
 <p></p>
-<ul><li data-ng-repeat="x in view3Tfl.tfl" class="repeat-row-anim">
+<ul><li data-ng-repeat="x in tubestatusesTfl.tfl" class="repeat-row-anim">
     <p>{{ x.name }}</p>
     <p>{{ x.lineStatuses[0].statusSeverityDescription }}</p>
 <p data-ng-if="x.lineStatuses[0].statusSeverityDescription == 'Part Closure'">{{ x.lineStatuses[0].reason }}</p>
