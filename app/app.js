@@ -11,7 +11,6 @@ angular.module('myApp', [
   'myApp.tubestatuses',
   'myApp.journeyplanner',
   'myApp.starwarsText',
-  'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/starwars'});
