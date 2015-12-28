@@ -50,10 +50,9 @@
 
 	<!-- tabs -->
 	<uib-tabset>
-	    <uib-tab heading="Static title">Static content</uib-tab>
 	    <uib-tab ng-repeat="x in journeyplanner.promiseJourney.journeys" heading="Option {{$index +1}}" active="tab.active" disable="tab.disabled">
-	      			<dl data-ng-repeat="x in journeyplanner.promiseJourney.journeys" class="dl-horizontal">
-				<h3>Option {{$index +1}}</h3>
+	      	<dl class="dl-horizontal">
+	      	<br><br>
 				<dt>Duration:</dt><dd>{{x.duration}} minutes</dd>
 				<dt>Departure time:</dt><dd> {{x.startDateTime | date:'shortTime'}}</dd>
 				<dt>Arrival time:</dt><dd> {{x.arrivalDateTime | date:'shortTime'}}</dd>
@@ -67,7 +66,6 @@
 						<dt>Arrival time:</dt><dd> {{leg.arrivalTime | date:'shortTime'}}</dd>
 						<dt>Mode of transport:</dt><dd> {{leg.mode.name}}</dd>
 					</dl>
-
 			</dl>
 	    </uib-tab>
 	</uib-tabset>
