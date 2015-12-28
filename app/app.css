@@ -54,7 +54,7 @@ form>input.form-control:first-child.ng-pristine{
   margin-bottom: 0.6em;
 }
 
-input.form-control.ng-dirty {
+input.form-control.ng-touched.ng-valid {
   background-color: #b3d4fc;
 }
 button.btn.btn-success.ng-scope {

@@ -44,9 +44,15 @@
 		<pre>masters of the galaxy = {{ journeyplanner.destinations.from.name | json }}</pre>
 	</div>
 </div>
+<br><br>
 <div class="row">
 	<div class="col-md-12">
-			<dl data-ng-repeat="x in journeyplanner.promiseJourney.journeys" class="dl-horizontal">
+
+	<!-- tabs -->
+	<uib-tabset>
+	    <uib-tab heading="Static title">Static content</uib-tab>
+	    <uib-tab ng-repeat="x in journeyplanner.promiseJourney.journeys" heading="Option {{$index +1}}" active="tab.active" disable="tab.disabled">
+	      			<dl data-ng-repeat="x in journeyplanner.promiseJourney.journeys" class="dl-horizontal">
 				<h3>Option {{$index +1}}</h3>
 				<dt>Duration:</dt><dd>{{x.duration}} minutes</dd>
 				<dt>Departure time:</dt><dd> {{x.startDateTime | date:'shortTime'}}</dd>
@@ -63,6 +69,10 @@
 					</dl>
 
 			</dl>
+	    </uib-tab>
+	</uib-tabset>
+  <!-- tabs end -->
+
 		</ul>
 	</div>
 </div>

@@ -11,6 +11,8 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
 
 .controller('journeyPlanner',['journeyPlannerFact', '$scope', '$log', '$http', function(journeyPlannerFact, $scope, $log, $http) {
  
+     $scope.person = 'Mike';
+     
 /* typeahead */
 /* returns location from query input */
   $scope.getLocation = function(val) {
@@ -45,6 +47,12 @@ angular.module('myApp.journeyplanner', ['ngRoute'])
     this.customer = {
       name: 'Derek'
     }
+
+    /* tabs */
+    $scope.tabs = [
+      { title:'Dynamic Title 1', content:'Dynamic content 1' },
+      { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+    ];
 }])
 
 .directive('myCustomer', function() {
