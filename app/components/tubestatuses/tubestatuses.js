@@ -29,7 +29,7 @@ angular.module('myApp.tubestatuses', ['ngRoute'])
 
   .controller('tubestatusesCtrl', ['tubestatusesTfl', function(tubestatusesTfl) {
 
-    var self = this;
+    let self = this;
     this.message = 'helloo monkey';
     this.viewMsg = tubestatusesTfl.message;
 

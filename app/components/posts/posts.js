@@ -13,7 +13,6 @@ angular.module('myApp.posts', ['ngRoute', 'myApp.config'])
 .factory('posts', ['$http', 'myConfig', function($http, myConfig ) {
 
   return {
-    message: 'eat me today!',
 
     posts: function() {
       return $http.get(myConfig.wordpressPosts);
