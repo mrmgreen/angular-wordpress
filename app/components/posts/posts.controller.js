@@ -5,7 +5,7 @@
 	.controller('postsCtrl', postsCtrl);
 
   function postsCtrl(posts){
-    this.howdy = 'message me could yal';
+    this.howdy = 'message me could yal to';
     var self = this;
     posts.posts().then(function(response) {
       self.posts = response.data;

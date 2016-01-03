@@ -20,6 +20,10 @@ angular.module('myApp.navBar', ['ui.bootstrap']).controller('navbarCtrl', functi
   $scope.isCollapsed = true;
 });
 
+angular.module('myApp.journeyplanner', ['ngRoute']);
+angular.module('myApp.terminaltext', ['ngRoute', 'ngSanitize', 'myApp.config']);
+angular.module('myApp.tubestatuses', ['ngRoute']);
+angular.module('myApp.starwarsText', ['ngRoute']);
 angular.module('myApp.posts', ['ngRoute', 'myApp.config']);
 
 // angular.module('myApp.navBar', ['ui.bootstrap'])
