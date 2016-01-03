@@ -3,7 +3,10 @@
 
   angular.module('myApp.terminaltext')
   
-  .factory('terminalText', ['$q', '$interval', '$timeout', '$rootScope', function($q, $interval, $timeout, $rootScope) {
+  .factory('terminalText', terminaltext);
+  terminaltext.$inject = ['$q', '$interval', '$timeout', '$rootScope'];
+
+  function terminaltext($q, $interval, $timeout, $rootScope) {
    
     var delay = 2000;
     var iterator;
@@ -78,6 +81,6 @@
       }
 
     }
-  }])
+  }
 
 })();

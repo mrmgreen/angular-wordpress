@@ -3,7 +3,11 @@
 
 angular.module('myApp.tubestatuses')
 
-  .factory('tubestatusesTfl', ['$http', function($http) {
+  .factory('tubestatusesTfl', tubestatusesTfl);
+
+  tubestatusesTfl.$inject = ['$http']
+
+  function tubestatusesTfl($http) {
 
     return {
       message: 'somebody stop me!',
@@ -17,6 +21,6 @@ angular.module('myApp.tubestatuses')
         });
       }
     }
-  }])
+  }
 
 })();

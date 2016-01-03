@@ -3,7 +3,11 @@
 
 angular.module('myApp.tubestatuses')
 
-  .controller('tubestatusesCtrl', ['tubestatusesTfl', function(tubestatusesTfl) {
+  .controller('tubestatusesCtrl', tubestatusesCtrl);
+
+  tubestatusesCtrl.$inject = ['tubestatusesTfl'];
+
+  function tubestatusesCtrl(tubestatusesTfl) {
 
     var self = this;
     this.message = 'helloo monkey';
@@ -16,6 +20,6 @@ angular.module('myApp.tubestatuses')
         console.log(data);
       })
 
-    }]);
+    }
 
 })();

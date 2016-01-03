@@ -2,8 +2,10 @@
 'use strict';
 
 angular.module('myApp.starwarsText')
+	
+	.service('bylineAnim', bylineAnim);
 
-	.service('bylineAnim', function(){ 
+	function bylineAnim(){ 
 
 		/*
 			The following JS takes in the byline and splits it into letters, each one wrapped in a span. We need to create the spans as nodes, we can't just add them to the HTML using innerHTML, as to do so would mean the CSS won't affect the span because it doesn't recognise the tag as existing. It's an old problem we run into time and again.
@@ -28,6 +30,6 @@ angular.module('myApp.starwarsText')
 			  }
 			}
 
-	});
+	}
 
 })();

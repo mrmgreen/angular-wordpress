@@ -3,7 +3,11 @@
 
 	angular.module('myApp.starwarsText')
 
-	.controller('starwars', ['bylineAnim', '$scope', '$location', function(byline, $scope, $location) {
+	.controller('starwars', starwars);
+
+	starwars.$inject = ['bylineAnim', '$scope', '$location'];
+
+	function starwars(byline, $scope, $location) {
 		$scope.byline;
 		$scope.animationEnd = animationEnd;
 		function animationEnd(){
@@ -15,6 +19,6 @@
 			document.querySelector('.martin').addEventListener("animationend", myScript);
 		}
 
-	}]);
+	}
 
 })();

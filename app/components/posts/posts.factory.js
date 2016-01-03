@@ -3,7 +3,10 @@
 
   angular.module('myApp.posts')
 
-  .factory('posts', ['$http', 'myConfig', function($http, myConfig ) {
+  .factory('posts', posts);
+  posts.$inject = ['$http', 'myConfig'];
+
+  function posts($http, myConfig) {
 
     return {
 
@@ -12,6 +15,6 @@
       }
 
     }
-  }]);
+  }
 
 })();

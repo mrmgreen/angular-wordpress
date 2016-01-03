@@ -3,7 +3,11 @@
 
   angular.module('myApp.terminaltext')
 
-  .factory('view1Fact', ['$http', 'myConfig', function($http, myConfig) {
+  .factory('view1Fact', view1Fact);
+
+  view1Fact.$inject = ['$http', 'myConfig'];
+
+  function view1Fact($http, myConfig) {
 
     return {
       newMessage: 'noooo',
@@ -13,6 +17,6 @@
       }
 
     }
-  }]);
+  }
 
 })();

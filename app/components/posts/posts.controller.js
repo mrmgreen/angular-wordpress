@@ -4,6 +4,8 @@
 	angular.module('myApp.posts')
 	.controller('postsCtrl', postsCtrl);
 
+  postsCtrl.$inject = ['posts'];
+  
   function postsCtrl(posts){
     this.howdy = 'message me could yal to';
     var self = this;

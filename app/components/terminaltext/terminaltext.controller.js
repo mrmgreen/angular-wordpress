@@ -3,7 +3,11 @@
 
   angular.module('myApp.terminaltext')
 
-  .controller('TerminalTextCtrl', ['view1Fact', 'terminalText', '$scope', '$timeout', function(view1Fact, terminalText, $scope, $timeout) {
+  .controller('TerminalTextCtrl', TerminalTextCtrl);
+
+  TerminalTextCtrl.$inject = ['view1Fact', 'terminalText', '$scope', '$timeout'];
+
+  function TerminalTextCtrl(view1Fact, terminalText, $scope, $timeout) {
       var self = this;
       this.terminalText = terminalText.terminal('.terminal');
       view1Fact.pages().then(function(response) {
@@ -21,6 +25,6 @@
         
       }
 
-  }]);
+  }
 
 })();
