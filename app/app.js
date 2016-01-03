@@ -20,6 +20,8 @@ angular.module('myApp.navBar', ['ui.bootstrap']).controller('navbarCtrl', functi
   $scope.isCollapsed = true;
 });
 
+angular.module('myApp.posts', ['ngRoute', 'myApp.config']);
+
 // angular.module('myApp.navBar', ['ui.bootstrap'])
 
 // .controller('navbarCtrl', function($scope){
