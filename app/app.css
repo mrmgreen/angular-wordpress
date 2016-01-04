@@ -1,5 +1,24 @@
 /* app css stylesheet */
-body { padding-top: 70px; background-color: #000; color: #fff; }
+body { 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    padding-top: 70px; 
+    background-color: #000;
+    color: #fff; 
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h2.posts { margin-bottom: 2em; }
+
+.posts-wrapper { margin-top: 3em; }
+.posts-wrapper:first-child { margin-top: 1em; }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
