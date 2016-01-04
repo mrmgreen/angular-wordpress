@@ -5,7 +5,7 @@ angular.module('myApp.tubestatuses')
 
   .factory('tubestatusesTfl', tubestatusesTfl);
 
-  tubestatusesTfl.$inject = ['$http']
+  tubestatusesTfl.$inject = ['$http'];
 
   function tubestatusesTfl($http) {
 

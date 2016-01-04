@@ -8,7 +8,7 @@
 	    .when('/journeyplanner', {
 	      controller: 'journeyPlanner',
 	      templateUrl: 'components/journeyplanner/journeyplanner.html',
-	      controllerAs: 'journeyplanner'
+	      controllerAs: 'vm'
 	    })
 	}]);
 

@@ -8,7 +8,7 @@
 		<form novalidate name="journeyplannerform">
 			<div class="form-group">
 				<label for="fromInput">Departure tube station</label>
-				<input type="text" name="journeyfrom" placeHolder="from" data-ng-model="journeyplanner.destinations.from" uib-typeahead="location as location.name for location in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
+				<input type="text" name="journeyfrom" placeHolder="from" data-ng-model="vm.destinations.from" uib-typeahead="location as location.name for location in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
 				<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 			    <div ng-show="noResults">
 			      <i class="glyphicon glyphicon-remove"></i> No Results Found
@@ -22,7 +22,7 @@
 	
 			<div class="form-group">
 				<label for="fromInput">Destination tube station</label>
-				<input type="text" name="journeyto" placeholder="to" data-ng-model="journeyplanner.destinations.to" uib-typeahead="location as location.name for location in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
+				<input type="text" name="journeyto" placeholder="to" data-ng-model="vm.destinations.to" uib-typeahead="location as location.name for location in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" aria-describedby="basic-addon1" maxlength="100" autocomplete="off" required>
 				<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 			    <div ng-show="noResults">
 			      <i class="glyphicon glyphicon-remove"></i> No Results Found
@@ -34,14 +34,14 @@
 				</div>
 			</div>
 
-			<button type="submit" data-ng-click="journeyplanner.update()" class="btn btn-success">Click</button>
+			<button type="submit" data-ng-click="vm.update()" class="btn btn-success">Click</button>
 		</form>
 
 	</div>
 	<div class="col-md-8">
 		<div my-customer></div>
-		<pre>master = {{ journeyplanner.destinations.from | json }}</pre>
-		<pre>masters of the galaxy = {{ journeyplanner.destinations.from.name | json }}</pre>
+		<pre>master = {{ vm.destinations.from | json }}</pre>
+		<pre>masters of the galaxy = {{ vm.destinations.from.name | json }}</pre>
 	</div>
 </div>
 <br><br>
@@ -50,7 +50,7 @@
 
 	<!-- tabs -->
 	<uib-tabset>
-	    <uib-tab ng-repeat="x in journeyplanner.promiseJourney.journeys" heading="Option {{$index +1}}" active="tab.active" disable="tab.disabled">
+	    <uib-tab ng-repeat="x in vm.promiseJourney.journeys" heading="Option {{$index +1}}" active="tab.active" disable="tab.disabled">
 	      	<dl class="dl-horizontal">
 	      	<br><br>
 				<dt>Duration:</dt><dd>{{x.duration}} minutes</dd>

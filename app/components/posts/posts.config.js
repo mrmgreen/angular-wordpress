@@ -7,7 +7,7 @@
     $routeProvider.when('/posts', {
       templateUrl: 'components/posts/posts.html',
       controller: 'postsCtrl',
-      controllerAs: 'posts'
+      controllerAs: 'vm'
     });
   }])
 

@@ -7,7 +7,7 @@ angular.module('myApp.starwarsText')
 	  $routeProvider.when('/starwars', {
 	    templateUrl: 'components/starwars-text-anim/starwars.html',
 	    controller: 'starwars',
-	    controllerAs: 'starwarsText'
+	    controllerAs: 'vm'
 	  });
 	}]);
 

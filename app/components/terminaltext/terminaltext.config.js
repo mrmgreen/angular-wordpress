@@ -7,7 +7,7 @@
     $routeProvider.when('/terminaltext', {
       templateUrl: 'components/terminaltext/terminaltext.html',
       controller: 'TerminalTextCtrl',
-      controllerAs: 'terminaltext'
+      controllerAs: 'vm'
     });
   }]);
   

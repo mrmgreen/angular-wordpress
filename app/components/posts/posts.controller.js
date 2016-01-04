@@ -7,7 +7,7 @@
   postsCtrl.$inject = ['posts'];
   
   function postsCtrl(posts){
-    this.howdy = 'message me could yal to';
+    this.howdy = 'hello mr Bond';
     var self = this;
     posts.posts().then(function(response) {
       self.posts = response.data;

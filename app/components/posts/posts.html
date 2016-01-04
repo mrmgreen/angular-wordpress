@@ -1,8 +1,8 @@
 
 <br><br><br>
-<h2>{{ posts.howdy }}</h2>
+<h2>{{ vm.howdy }}</h2>
 
-<ul><li data-ng-repeat="x in posts.posts" class="repeat-row-anim">
+<ul><li data-ng-repeat="x in vm.posts" class="repeat-row-anim">
   <h2>{{ x.title.rendered }}</h2>
   <p data-ng-bind-html="x.excerpt.rendered"></p>
   <p data-ng-bind-html="x.content.rendered"></p>
@@ -10,4 +10,4 @@
 
 </li></ul>
 
-<p>{{ posts.posts[0] }}</p>
+<p>{{ vm.posts[0] }}</p>

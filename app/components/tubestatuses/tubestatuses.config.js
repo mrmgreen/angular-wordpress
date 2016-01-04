@@ -8,7 +8,7 @@ angular.module('myApp.tubestatuses')
         .when('/tubestatuses', {
           templateUrl: 'components/tubestatuses/tubestatuses.html',
           controller: 'tubestatusesCtrl',
-          controllerAs: 'tubestatusesTfl'
+          controllerAs: 'vm'
         })
   }]);
 
