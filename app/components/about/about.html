@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-sm-12">
+
+		<div data-ng-repeat="x in vm.pages" class="repeat-row-anim posts-wrapper">
+		  	<div class="row">
+			  	<div class="col-sm-6 col-sm-offset-3">
+			  		<h2 class="posts">{{ x.title.rendered }}</h2>
+			  	</div>
+			</div>
+			<div class="col-sm-10 col-sm-offset-1">
+			  	<!-- <p data-ng-bind-html="x.excerpt.rendered"></p> -->
+			  	<p data-ng-bind-html="x.content.rendered"></p>
+			</div>
+		</div>
+
+	</div>
+</div>

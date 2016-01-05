@@ -5,9 +5,9 @@
 
   .controller('TerminalTextCtrl', TerminalTextCtrl);
 
-  TerminalTextCtrl.$inject = ['view1Fact', 'terminalText', '$scope', '$timeout'];
+  TerminalTextCtrl.$inject = ['view1Fact', 'terminalText', '$scope', '$timeout', '$location'];
 
-  function TerminalTextCtrl(view1Fact, terminalText, $scope, $timeout) {
+  function TerminalTextCtrl(view1Fact, terminalText, $scope, $timeout, $location) {
       var self = this;
       this.terminalText = terminalText.terminal('.terminal');
       view1Fact.pages().then(function(response) {
@@ -22,7 +22,8 @@
         }, 2000);
       });
       this.peekBtnClick = function() {
-        
+        console.log('peekaboo');
+        $location.path('/about');
       }
 
   }

@@ -11,6 +11,7 @@ angular.module('myApp', [
   'myApp.tubestatuses',
   'myApp.journeyplanner',
   'myApp.starwarsText',
+  'myApp.about'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/starwars'});
@@ -25,6 +26,7 @@ angular.module('myApp.terminaltext', ['ngRoute', 'ngSanitize', 'myApp.config']);
 angular.module('myApp.tubestatuses', ['ngRoute']);
 angular.module('myApp.starwarsText', ['ngRoute']);
 angular.module('myApp.posts', ['ngRoute', 'myApp.config']);
+angular.module('myApp.about', ['ngRoute']);
 
 // angular.module('myApp.navBar', ['ui.bootstrap'])
 
