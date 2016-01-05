@@ -20,7 +20,7 @@ gulp.task('testSingle', shell.task('karma start karma.conf.js  --single-run'));
 gulp.task('components', function() {
 	return gulp.src(['./app/components/**/*.js', '!./app/components/**/*test.js'])
 		.pipe(sourcemaps.init())
-		// .pipe(babel())
+		.pipe(babel({ presets: ['es2015'] }))
 		.pipe(concat('all.js'))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./app/dist/'));

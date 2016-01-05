@@ -9,6 +9,7 @@
 
   function TerminalTextCtrl(view1Fact, terminalText, $scope, $timeout, $location) {
       var self = this;
+    let jimbo = 'something';
       this.terminalText = terminalText.terminal('.terminal');
       view1Fact.pages().then(function(response) {
         self.homepage = response.data;

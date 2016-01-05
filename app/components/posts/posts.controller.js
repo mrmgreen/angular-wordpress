@@ -1,5 +1,5 @@
 (function() {
-	'use strict',
+  'use strict',
 
 	angular.module('myApp.posts')
 	.controller('postsCtrl', postsCtrl);
