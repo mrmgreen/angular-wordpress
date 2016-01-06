@@ -23,12 +23,13 @@ fdescribe('aboutCtrl returns pages', function() {
     }]);
   });
 
-  var aboutCtrl, mockPages, myConfig, http, jsonResponse = { title: 'first page'};
+  var aboutCtrl, mockPages, myConfig, http, httpBackend, jsonResponse = { title: 'first page'};
 
   beforeEach(inject(function ($controller, pages, _myConfig_, $http, $httpBackend) {
     mockPages = pages;
     myConfig = _myConfig_;
-    $httpBackend.whenGET(/(wp-json\/wp\/v2\/posts$)/).respond(jsonResponse);
+    httpBackend = $httpBackend;
+    httpBackend.whenGET(/(wp-json\/wp\/v2\/pages$)/).respond(jsonResponse);
     spyOn(mockPages, 'pages').and.callThrough();
     aboutCtrl = $controller('aboutCtrl', {
       pages: mockPages,
@@ -41,8 +42,12 @@ fdescribe('aboutCtrl returns pages', function() {
   });
 
   it('pages promise to have been called', function() {
-    var passpromise = true;
     expect(mockPages.pages).toHaveBeenCalled();
+  });
+
+  it('mock httpbackend test pages promise', function() {
+    httpBackend.flush();
+    expect(aboutCtrl.pages).toEqual(jasmine.objectContaining({ title: 'first page' }));
   });
 
 });

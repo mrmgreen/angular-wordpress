@@ -12,7 +12,7 @@
 		pages.pages().then(function(response) {
 			self.pages = response.data;
 		}, function(data) {
-			console.log(data);
+			console.log('pages api failed', data);
 		});
 		this.message = "all is good";
 	}
