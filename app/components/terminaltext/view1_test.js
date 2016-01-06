@@ -1,6 +1,6 @@
 'use strict';
 
-fdescribe('myApp.terminaltext module', function() {
+describe('myApp.terminaltext module', function() {
 
   beforeEach(module('myApp.terminaltext'));
   beforeEach(module('myApp.config'));
