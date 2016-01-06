@@ -3,38 +3,39 @@
 fdescribe('aboutCtrl returns pages', function() {
 
   beforeEach(module('myApp.about'));
+  beforeEach(module('myApp.config'));
 
-  var scope, $controller;
+  module(function($provide) {
+    $provide.factory('pages', ['$q', function($q) {
+      function pages() {
+        if (passPromise) {
+          return $q.when();
+        } else {
+          return $q.reject();
+        }
+      }
+      return {
+        pages: pages
+      }
 
-  beforeEach(inject(function ($rootScope, _$controller_) {
-    scope = $rootScope.$new();
-    $controller = _$controller_;
-  }));
-
-module(function($provide) {
-  $provide.factory('pages', ['$q', function($q) {
-
-  }]);
-});
-
-  it('aboutCtrl pages variable contains pages', function() {
-    var controller = $controller('aboutCtrl', { $scope : scope });
-    expect($scope.message).toEqual('all not good');
+    }]);
   });
 
-});
+  var aboutCtrl, mockPages, myConfig, http, httpBackend, jsonResponse = { title: 'first page'};
 
-module(function($provide){
-  $provide.factory('dataSvc', ['$q', function($q) {
-    function save(data){
-      if(passPromise){
-        return $q.when();
-      } else {
-        return $q.reject();
-      }
-    }
-    return{
-      save: save
-    };
-  }]);
+  beforeEach(inject(function ($controller, pages, _myConfig_, $http, $httpBackend) {
+    mockPages = pages;
+    myConfig = _myConfig_;
+    $httpBackend.whenGET(/(wp-json\/wp\/v2\/posts$)/).respond(jsonResponse);
+    spyOn(mockPages, 'pages').and.callThrough();
+    aboutCtrl = $controller('aboutCtrl', {
+      pages: mockPages,
+      $http: http
+    });
+  }));
+
+  it('aboutCtrl pages message', function() {
+    expect(aboutCtrl.message).toEqual('all is good');
+  });
+
 });
