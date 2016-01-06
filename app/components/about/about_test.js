@@ -2,8 +2,10 @@
 
 fdescribe('aboutCtrl returns pages', function() {
 
-  beforeEach(module('myApp.about'));
-  beforeEach(module('myApp.config'));
+  beforeEach(function() {
+    module('myApp.about');
+    module('myApp.config');
+  });
 
   module(function($provide) {
     $provide.factory('pages', ['$q', function($q) {
@@ -21,7 +23,7 @@ fdescribe('aboutCtrl returns pages', function() {
     }]);
   });
 
-  var aboutCtrl, mockPages, myConfig, http, httpBackend, jsonResponse = { title: 'first page'};
+  var aboutCtrl, mockPages, myConfig, http, jsonResponse = { title: 'first page'};
 
   beforeEach(inject(function ($controller, pages, _myConfig_, $http, $httpBackend) {
     mockPages = pages;
@@ -36,6 +38,11 @@ fdescribe('aboutCtrl returns pages', function() {
 
   it('aboutCtrl pages message', function() {
     expect(aboutCtrl.message).toEqual('all is good');
+  });
+
+  it('pages promise to have been called', function() {
+    var passpromise = true;
+    expect(mockPages.pages).toHaveBeenCalled();
   });
 
 });

@@ -13,7 +13,7 @@
 			self.pages = response.data;
 		}, function(data) {
 			console.log(data);
-		})
+		});
 		this.message = "all is good";
 	}
 
