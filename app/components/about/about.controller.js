@@ -9,10 +9,11 @@
 
 	function aboutCtrl(pages) {
 		var self = this;
-		pages.pages().then(function(response) {
+		pages.getPages().then(function(response) {
 			self.pages = response.data;
 		}, function(data) {
-			console.log('pages api failed', data);
+			console.log('pages api failed ', data);
+			self.error = 'getPages has thrown an error';
 		});
 		this.message = "all is good";
 	}
