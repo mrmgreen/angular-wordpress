@@ -14,11 +14,11 @@
     var deferred = $q.defer();
     
     $http.get(myConfig.wordpressPages)
-    .success(function(data) {
+    .then(function(data) {
       deferred.resolve(data);
-    })
-    .error(function() {
-      deferred.reject();
+    },
+    function(error) {
+      deferred.reject(error);
     });
 
     return deferred.promise; 

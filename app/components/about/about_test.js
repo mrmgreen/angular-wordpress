@@ -2,104 +2,138 @@
 
 fdescribe('Testing the about controller', function() {
 
-var defferd, $q, controller, $rootScope, pages;
+var $q, vm, $rootScope, pages, mockPages, setPromise, defer, promise,
+ response = { data: { pageId: 1, Title: 'page1' }};
+
+  beforeEach(function() {
+    module('myApp.about');
+    module('myApp.config');
+    module(function($provide) {
+      $provide.factory('pages', ['$q', function($q) {
+        setPromise = true;
+        defer = $q.defer();
+        promise = defer.promise;
+        function getPages() {
+          if(setPromise) {
+            defer.resolve(response);
+          } else {
+            defer.reject('bad');
+          }
+          return defer.promise;
+        }
+        return {
+          getPages: getPages
+        }
+      }]);
+    });
+  });
+
+  beforeEach(inject(function(_$q_, _$rootScope_, $controller, pages) {
+    $rootScope = _$rootScope_;
+    mockPages = pages;
+    spyOn(mockPages, 'getPages').and.callThrough();
+    vm = $controller('aboutCtrl', {
+      pages: mockPages
+    });
+  }));
+
+  it('expect message to be all good', function() {
+    expect(vm.message).toEqual('all is good');
+  });
+
+  it('mockPages to have been called', function() {
+    $rootScope.$digest();
+    expect(mockPages.getPages).toHaveBeenCalled();
+  });
+
+  it('resolve the pages promise', function() {
+    $rootScope.$digest();
+    expect(vm.pages).toBe(response.data);
+  });
+
+});
+
+fdescribe('Testing the about controller promise rejected', function() {
+
+var $q, vm, $rootScope, pages, mockPages, setPromise, defer, promise,
+ response = { data: { pageId: 1, Title: 'page1' }};
+
+  beforeEach(function() {
+    module('myApp.about');
+    module('myApp.config');
+    module(function($provide) {
+      $provide.factory('pages', ['$q', function($q) {
+        setPromise = false;
+        defer = $q.defer();
+        promise = defer.promise;
+        function getPages() {
+          if(setPromise) {
+            defer.resolve(response);
+          } else {
+            defer.reject('bad');
+          }
+          return defer.promise;
+        }
+        return {
+          getPages: getPages
+        }
+      }]);
+    });
+  });
+
+  beforeEach(inject(function(_$q_, _$rootScope_, $controller, pages) {
+    $rootScope = _$rootScope_;
+    mockPages = pages;
+    spyOn(mockPages, 'getPages').and.callThrough();
+    vm = $controller('aboutCtrl', {
+      pages: mockPages
+    });
+  }));
+
+  it('mockPages to have been called', function() {
+    $rootScope.$digest();
+    expect(mockPages.getPages).toHaveBeenCalled();
+  });
+
+  it('resolve the pages promise', function() {
+    $rootScope.$digest();
+    expect(vm.error).toBe('getPages has thrown an error');
+  });
+
+});
+
+fdescribe('Testing the pages factory', function() {
+
+  var vm, mockPages, myConfig, http, httpBackend, jsonResponse = { title: 'first page'};
 
   beforeEach(function() {
     module('myApp.about');
     module('myApp.config');
   });
 
-  beforeEach(inject(function(_$q_, _$rootScope_, $controller, pages) {
-    $rootScope = _$rootScope_;
-    deferred = _$q_.defer();
-
-    spyOn(pages, 'getPages').and.returnValue(deferred.promise);
-    controller = $controller('aboutCtrl');
+  beforeEach(inject(function ($controller, pages, _myConfig_, $http, $httpBackend) {
+    mockPages = pages;
+    myConfig = _myConfig_;
+    httpBackend = $httpBackend;
+    httpBackend.whenGET(/(wp-json\/wp\/v2\/pages$)/).respond(jsonResponse);
+    spyOn(mockPages, 'getPages').and.callThrough();
+    vm = $controller('aboutCtrl', {
+      pages: mockPages,
+      $http: http
+    });
   }));
-  // it('should return message', inject(function($controller) {
-  //  $controller('aboutCtrl');
-  it('expect message to be all good', function() {
-    expect(controller.message).toEqual('all is good');
+
+  it('aboutCtrl pages message', function() {
+    expect(vm.message).toEqual('all is good');
   });
-  it('resolves the pages promise', function() {
-    pages.pages
-  })
+
+  it('pages promise to have been called', function() {
+    expect(mockPages.getPages).toHaveBeenCalled();
+  });
+
+  it('mock httpbackend test pages promise', function() {
+    httpBackend.flush();
+    expect(vm.pages).toEqual(jasmine.objectContaining({ title: 'first page' }));
+  });
 
 });
-
-// 'use strict';
-
-// var controller;
-
-// fdescribe('about controller', function() {
-
-//   beforeEach(function() {
-//     module('myApp.about');
-//     module('myApp.config');
-//   });
-
-//   beforeEach(inject(function($controller) {
-//     controller = $controller('aboutCtrl');
-//   }));
-//   // it('should return message', inject(function($controller) {
-//   //  $controller('aboutCtrl');
-//   it('expect message to be all good', function() {
-//     expect(controller.message).toEqual('all is good');
-//   });
-
-// });
-
-
-// 'use strict';
-
-// fdescribe('aboutCtrl returns pages', function() {
-
-//   beforeEach(function() {
-//     module('myApp.about');
-//     module('myApp.config');
-//   });
-
-//   module(function($provide) {
-//     $provide.factory('pages', ['$q', function($q) {
-//       function pages() {
-//         if (passPromise) {
-//           return $q.when();
-//         } else {
-//           return $q.reject();
-//         }
-//       }
-//       return {
-//         pages: pages
-//       }
-
-//     }]);
-//   });
-
-//   var aboutCtrl, mockPages, myConfig, http, httpBackend, jsonResponse = { title: 'first page'};
-
-//   beforeEach(inject(function ($controller, pages, _myConfig_, $http, $httpBackend) {
-//     mockPages = pages;
-//     myConfig = _myConfig_;
-//     httpBackend = $httpBackend;
-//     httpBackend.whenGET(/(wp-json\/wp\/v2\/pages$)/).respond(jsonResponse);
-//     spyOn(mockPages, 'pages').and.callThrough();
-//     aboutCtrl = $controller('aboutCtrl', {
-//       pages: mockPages,
-//       $http: http
-//     });
-//   }));
-
-//   it('aboutCtrl pages message', function() {
-//     expect(aboutCtrl.message).toEqual('all is good');
-//   });
-
-//   it('pages promise to have been called', function() {
-//     expect(mockPages.pages).toHaveBeenCalled();
-//   });
-
-//   it('mock httpbackend test pages promise', function() {
-//     httpBackend.flush();
-//     expect(aboutCtrl.pages).toEqual(jasmine.objectContaining({ title: 'first page' }));
-//   });
-
-// });
