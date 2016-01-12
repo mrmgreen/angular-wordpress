@@ -9,7 +9,7 @@ exports.config = {
     'browserName': 'chrome'
   },
 
-  baseUrl: 'http://localhost:8000/app/',
+  baseUrl: 'http://localhost:8011/wordpress-angular/angular-wordpress/app/',
 
   framework: 'jasmine',
 
