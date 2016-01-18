@@ -15,6 +15,7 @@
     var self = this;
     this.destinations;
     this.promiseJourney = '';
+    this.getGeoLocation = getGeoLocation;
 
     /* directive customer name */
     this.customer = {
@@ -53,6 +54,35 @@
       }, function(response) {
         console.log('error with journey', reponse.data);
       });
+    }
+
+    function getGeoLocation() {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      }
+    }
+
+    function showPosition(position) {
+        console.log('getGeoLocation success', position);
+        console.log('getGeoLocation success lat', position.coords.latitude);
+        console.log('getGeoLocation success long', position.coords.longitude);
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                console.log("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                console.log("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                console.log("An unknown error occurred.");
+                break;
+        }
     }
   }
 
